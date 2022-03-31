@@ -66,7 +66,11 @@ const Home = () => {
               {navigation.map((el, i) => {
                 return (
                   <Link key={i} to={el.pathname}>
-                    <span className="filter__button flex align-center justify-center">
+                    <span
+                      className={`filter__button flex align-center justify-center ${
+                        pathname === el.pathname ? "active" : ""
+                      }`}
+                    >
                       {el.icon} {el.display}
                     </span>
                   </Link>
