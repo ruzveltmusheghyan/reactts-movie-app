@@ -12,7 +12,6 @@ export const fetchTopRatedMovies = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(movieSlice.actions.movieFetching());
     const response = await tmdbApi.getTopRatedMovies();
-    console.log(response);
     dispatch(movieSlice.actions.movieFetchingSuccess(response.data.results));
   } catch (e) {}
 };
