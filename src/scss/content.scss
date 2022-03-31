@@ -1,0 +1,9 @@
+//card
+@import "./card.scss";
+@import "./variables.scss";
+main {
+  .container {
+    padding: $padding;
+    margin-top: 100px;
+  }
+}

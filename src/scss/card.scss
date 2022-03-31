@@ -1,0 +1,97 @@
+main {
+  .card {
+    height: auto;
+    position: relative;
+    flex-basis: 16.6%;
+    padding: 10px;
+    flex-direction: column;
+    transition: 0.5s all;
+    .movie__title {
+      display: block;
+      max-width: 150px;
+      word-wrap: normal;
+    }
+    &:hover {
+      -webkit-box-shadow: 5px 5px 15px 5px #000000;
+      box-shadow: 5px 5px 15px 5px #000000;
+      transform: scale(0.99);
+    }
+    img {
+      color: white;
+      min-width: 130px;
+      width: 100%;
+      object-fit: scale-down;
+      border-radius: 10px;
+      max-height: 250px;
+      min-height: 250px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    p {
+      font-family: "Roboto", sans-serif;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  }
+  .card-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+}
+.card-image-wrapper {
+  img {
+    min-width: 130px;
+    width: 100%;
+    object-fit: scale-down;
+    border-radius: 10px;
+    max-height: 250px;
+    min-height: 250px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+}
+.watchlater {
+  margin-top: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+.watchlater > svg {
+  color: white;
+}
+.card:hover > div > .watchlater {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media only screen and (max-width: $breakpoint_lg) {
+  .card {
+    flex-basis: 20% !important;
+  }
+}
+
+@media only screen and (max-width: $breakpoint_md) {
+  .card {
+    flex-basis: 25% !important;
+  }
+}
+
+@media only screen and (max-width: $breakpoint_sm) {
+  .card {
+    flex-basis: 50% !important;
+  }
+}
+@media only screen and (max-width: 515px) {
+  .card {
+    flex-basis: 50% !important;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .card {
+    flex-basis: 100% !important;
+  }
+}

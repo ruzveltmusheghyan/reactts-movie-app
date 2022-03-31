@@ -1,0 +1,48 @@
+//fonts
+@import "./fonts.scss";
+//variables
+@import "./variables.scss";
+//globals
+@import "./globals.scss";
+//header
+@import "./header.scss";
+//content
+@import "./content.scss";
+//movie-page
+@import "./movie.scss";
+//search
+@import "./search.scss";
+//home page
+@import "./home.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111111;
+  color: #f6f6f6;
+  font-family: "sf-pro-lighter", sans-serif;
+}
+body.active {
+  overflow: hidden;
+}
+//extra small breakpoints
+@media only screen and (max-width: 270px) {
+  .genres {
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+  }
+  .logo {
+    width: fit-content;
+    font-size: 7px;
+  }
+  .details__poster {
+    img {
+      min-width: 0 !important;
+    }
+  }
+}

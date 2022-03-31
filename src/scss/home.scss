@@ -1,0 +1,16 @@
+.home__filter {
+  gap: 25px;
+}
+.filter__button {
+  cursor: pointer;
+  gap: 5px;
+  width: fit-content;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
+  padding: 9px 15px;
+}
+.filter__button.active {
+  background: #fff !important;
+  color: #000 !important;
+}
