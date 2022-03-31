@@ -374,7 +374,7 @@ main .container {
 
 .details__container {
   width: 70%;
-  margin: 0 auto;
+  margin: 150px auto;
   gap: 20px;
   display: flex;
 }

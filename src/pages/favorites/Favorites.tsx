@@ -11,13 +11,11 @@ const Favorites = () => {
             <div className="category-text flex justify-between">
               Favorite Movies
             </div>
-            <Card />
           </div>
           <div>
             <div className="category-text flex justify-between">
               Favorite Tv
             </div>
-            <Card />
           </div>
         </div>
       </main>

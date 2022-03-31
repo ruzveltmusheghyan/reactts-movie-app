@@ -23,3 +23,13 @@ export const fetchUpcomingMovies = () => async (dispatch: AppDispatch) => {
     dispatch(movieSlice.actions.movieFetchingSuccess(response.data.results));
   } catch (e) {}
 };
+
+export const fetchSingleMovie =
+  (category: string, movieId: string) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(movieSlice.actions.movieFetching());
+      const response = await tmdbApi.getSingleMovie(category, movieId);
+      console.log(response);
+      dispatch(movieSlice.actions.singleMovieFetchingSuccess(response.data));
+    } catch (e) {}
+  };

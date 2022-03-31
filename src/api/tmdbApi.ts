@@ -20,6 +20,10 @@ const tmdbApi = {
     const url = `${apiConfig.baseURL}/movie/upcoming`;
     return axios.get(url, params);
   },
+  getSingleMovie: (category: string, movieId: string) => {
+    const url = `${apiConfig.baseURL}/${category}/${movieId}`;
+    return axios.get(url, params);
+  },
 };
 
 export default tmdbApi;

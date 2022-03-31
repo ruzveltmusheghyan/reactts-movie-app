@@ -25,11 +25,6 @@ const Home = () => {
   }, [movies]);
   const navigation = [
     {
-      pathname: "/top_rated",
-      display: "Top Rated",
-      icon: <AiOutlineStar />,
-    },
-    {
       pathname: "/trending",
       display: "Trending Now",
       icon: <AiOutlineFire />,
@@ -38,6 +33,11 @@ const Home = () => {
       pathname: "/upcoming",
       display: "Upcoming",
       icon: <AiOutlineFieldTime />,
+    },
+    {
+      pathname: "/top_rated",
+      display: "Top Rated",
+      icon: <AiOutlineStar />,
     },
   ];
   useEffect(() => {
@@ -52,10 +52,9 @@ const Home = () => {
         dispatch(fetchUpcomingMovies());
         break;
       default:
-        dispatch(fetchTopRatedMovies());
+        dispatch(fetchTrendingMovies());
     }
   }, [pathname]);
-
   return (
     <>
       <Header />
@@ -68,7 +67,12 @@ const Home = () => {
                   <Link key={i} to={el.pathname}>
                     <span
                       className={`filter__button flex align-center justify-center ${
-                        pathname === el.pathname ? "active" : ""
+                        pathname === el.pathname
+                          ? "active"
+                          : "" ||
+                            (pathname === "/" && el.pathname === "/trending"
+                              ? "active"
+                              : "")
                       }`}
                     >
                       {el.icon} {el.display}
@@ -87,7 +91,7 @@ const Home = () => {
                 <div></div>
               </div>
             ) : (
-              <Card media={movieState} />
+              <Card fromPath={pathname} media={movieState} />
             )}
           </div>
         </div>

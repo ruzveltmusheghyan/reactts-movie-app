@@ -9,7 +9,6 @@ const Content = () => {
             <div className="category-text">Movies</div>
             <Search />
           </div>
-          <Card />
         </div>
       </div>
     </main>

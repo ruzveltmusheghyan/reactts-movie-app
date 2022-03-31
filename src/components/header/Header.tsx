@@ -24,14 +24,16 @@ const Header = ({}) => {
       <div className="background-container"></div>
       <div className="container align-start justify-between flex">
         <div className="logo">
-          <h1>Movie App</h1>
+          <Link to="/">
+            <h1>Movie App</h1>
+          </Link>
         </div>
         <div className="menu">
           <ul className="menu__list flex">
             {navigation.map((element, index) => {
               return (
                 <li key={index} className="menu-list__item">
-                  {element.display}
+                  <Link to={element.path}>{element.display}</Link>
                 </li>
               );
             })}

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MovieState {
+  singleMovie: object;
   movies: [];
   tv: [];
   isLoading: boolean;
@@ -8,6 +9,7 @@ interface MovieState {
 }
 
 const initialState: MovieState = {
+  singleMovie: {},
   movies: [],
   tv: [],
   isLoading: false,
@@ -25,6 +27,11 @@ export const movieSlice = createSlice({
       state.isLoading = false;
       state.error = "";
       state.movies = action.payload;
+    },
+    singleMovieFetchingSuccess(state, action: PayloadAction<[]>) {
+      state.isLoading = false;
+      state.error = "";
+      state.singleMovie = action.payload;
     },
     movieFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;

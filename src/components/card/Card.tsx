@@ -1,17 +1,18 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Movie } from "../../models/movieModel";
 interface Props {
-  media?: Movie[];
+  media: Movie[];
+  fromPath: string;
 }
 
-const Card: React.FC<Props> = ({ media }) => {
+const Card: React.FC<Props> = ({ media, fromPath }) => {
   return (
     <div className="card-wrapper flex">
       {media?.map((movie: Movie) => {
         return (
           <div key={movie.id} className="card flex align-center">
             <div>
-              <a>
+              <a href={`${fromPath !== "tv" ? "/movie" : "tv"}/${movie.id}`}>
                 <div className="card-image-wrapper">
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
