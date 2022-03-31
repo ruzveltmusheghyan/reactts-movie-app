@@ -24,6 +24,10 @@ const tmdbApi = {
     const url = `${apiConfig.baseURL}/${category}/${movieId}`;
     return axios.get(url, params);
   },
+  getMovieCast: (movieId: string) => {
+    const url = `${apiConfig.baseURL}/movie/${movieId}/credits`;
+    return axios.get(url, params);
+  },
 };
 
 export default tmdbApi;

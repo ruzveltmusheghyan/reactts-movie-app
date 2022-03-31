@@ -1,15 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SingleMovie } from "../../models/movieModel";
 
 interface MovieState {
-  singleMovie: object;
+  singleMovie: SingleMovie;
   movies: [];
   tv: [];
+  cast: [];
   isLoading: boolean;
   error: string;
 }
 
 const initialState: MovieState = {
-  singleMovie: {},
+  singleMovie: {
+    title: "",
+    original_title: "",
+    backdrop_path: "",
+    poster_path: "",
+    name: "",
+    genres: [],
+    release_date: "",
+    first_air_date: "",
+    spoken_languages: [],
+    runtime: 0,
+    episode_run_time: "",
+    status: "",
+    production_countries: [],
+    overview: "",
+  },
+  cast: [],
   movies: [],
   tv: [],
   isLoading: false,
@@ -28,7 +46,7 @@ export const movieSlice = createSlice({
       state.error = "";
       state.movies = action.payload;
     },
-    singleMovieFetchingSuccess(state, action: PayloadAction<[]>) {
+    singleMovieFetchingSuccess(state, action: PayloadAction<SingleMovie>) {
       state.isLoading = false;
       state.error = "";
       state.singleMovie = action.payload;
@@ -36,6 +54,9 @@ export const movieSlice = createSlice({
     movieFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    castFetching(state, action: PayloadAction<[]>) {
+      state.cast = action.payload;
     },
   },
 });

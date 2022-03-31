@@ -2,31 +2,37 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Header from "../../components/header/Header";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { Obj } from "../../models/movieModel";
-import { fetchSingleMovie } from "../../store/reducers/ActionCreators";
+import { Obj, SingleMovie } from "../../models/movieModel";
+import {
+  fetchMovieCast,
+  fetchSingleMovie,
+} from "../../store/reducers/ActionCreators";
 import apiConfig from "../../api/config";
+import Cast from "../../components/cast/Cast";
 const Movie = () => {
   const { category, id } = useParams();
   const dispatch = useAppDispatch();
-  const [singleMovie, setSingleMovie] = useState<Obj>({});
-  const movie: Obj = useAppSelector((state) => state.movieReducer.singleMovie);
+  const [singleMovie, setSingleMovie] = useState<SingleMovie>();
+  const movie = useAppSelector((state) => state.movieReducer.singleMovie);
+  const cast = useAppSelector((state) => state.movieReducer.cast);
   useEffect(() => {
-    console.log("qwe");
     if (category && id) {
       dispatch(fetchSingleMovie(category, id));
+      dispatch(fetchMovieCast(id));
     }
   }, []);
   useEffect(() => {
     setSingleMovie(movie);
   }, [movie]);
+  console.log(cast);
   return (
     <>
-      {Object.keys(singleMovie).length !== 0 ? (
+      {singleMovie && Object.keys(singleMovie).length > 1 ? (
         <>
           <div
             className="background_poster"
             style={{
-              backgroundImage: `url(${apiConfig.image(
+              backgroundImage: `url(${apiConfig?.image(
                 singleMovie?.backdrop_path || singleMovie?.poster_path
               )})`,
             }}
@@ -36,7 +42,7 @@ const Movie = () => {
             <div className="details__container">
               <div className="details__poster">
                 <img
-                  src={apiConfig.w500Image(singleMovie.poster_path)}
+                  src={apiConfig?.w500Image(singleMovie.poster_path)}
                   alt=""
                 />
               </div>
@@ -66,14 +72,14 @@ const Movie = () => {
                       <tr className="detail-row">
                         <td className="detail-data">Released</td>
                         <td className="detail-data">
-                          {singleMovie.release_date ||
-                            singleMovie.first_air_date}
+                          {singleMovie?.release_date ||
+                            singleMovie?.first_air_date}
                         </td>
                       </tr>
                       <tr className="detail-row">
                         <td className="detail-data">Language</td>
                         <td className="detail-data">
-                          {singleMovie.spoken_languages.map(
+                          {singleMovie?.spoken_languages.map(
                             (lng: Obj, i: number) => {
                               return (
                                 <span key={i} style={{ marginRight: "5px" }}>
@@ -98,11 +104,11 @@ const Movie = () => {
                       </tr>
                       <tr className="detail-row">
                         <td className="detail-data">Status</td>
-                        <td className="detail-data">{singleMovie.status}</td>
+                        <td className="detail-data">{singleMovie?.status}</td>
                       </tr>
                       <tr className="detail-row">
                         <td className="detail-data">Country </td>
-                        {singleMovie.production_countries.map(
+                        {singleMovie?.production_countries.map(
                           (country: Obj, i: number) => {
                             return (
                               <td key={i} className="detail-data">
@@ -118,7 +124,8 @@ const Movie = () => {
               </div>
             </div>
             <div className="media__cast">
-              <h1>Actors</h1>
+              <h1>Cast</h1>
+              <Cast cast={cast} />
             </div>
           </div>
         </>

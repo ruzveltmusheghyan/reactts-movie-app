@@ -482,6 +482,21 @@ main .container {
   color: #000 !important;
 }
 
+.cast-wrapper {
+  padding: 40px;
+  flex-basis: 20%;
+}
+.cast-wrapper .cast-image__wrapper img {
+  min-width: 130px;
+  width: 100%;
+  object-fit: scale-down;
+  border-radius: 10px;
+  max-height: 250px;
+  min-height: 250px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
 * {
   margin: 0;
   padding: 0;
