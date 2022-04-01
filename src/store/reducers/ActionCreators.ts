@@ -44,6 +44,9 @@ export const fetchMovieCast =
   };
 export const fetchSearch = (query: string) => async (dispatch: AppDispatch) => {
   try {
+    if (query === "") {
+      return;
+    }
     const { data } = await tmdbApi.getSearchResults(query);
     dispatch(movieSlice.actions.searchFetching(data.results));
   } catch (e) {}

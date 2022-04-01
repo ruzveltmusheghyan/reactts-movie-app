@@ -13,7 +13,6 @@ const Header = ({}) => {
       display: "Home",
       path: "/",
     },
-
     {
       display: "Favorite",
       path: "/favorite",
@@ -26,7 +25,7 @@ const Header = ({}) => {
       <div className="background-container"></div>
       <div className="container align-start justify-between flex">
         <div className="logo">
-          <Link to="/">
+          <Link to="/trending_now">
             <h1>Movie App</h1>
           </Link>
         </div>
