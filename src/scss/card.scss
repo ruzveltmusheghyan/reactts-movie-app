@@ -54,11 +54,17 @@ main {
   }
 }
 .watchlater {
+  left: 150px;
+  top: -93%;
   margin-top: 10px;
   transition: all 0.5s;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+  position: relative;
+  width: fit-content;
+  height: auto;
+  display: flex;
 }
 .watchlater > svg {
   color: white;
@@ -82,10 +88,10 @@ main {
 
 @media only screen and (max-width: $breakpoint_sm) {
   .card {
-    flex-basis: 50% !important;
+    flex-basis: 33.33% !important;
   }
 }
-@media only screen and (max-width: 515px) {
+@media only screen and (max-width: 571px) {
   .card {
     flex-basis: 50% !important;
   }

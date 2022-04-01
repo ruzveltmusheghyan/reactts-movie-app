@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({ media, fromPath }) => {
                 <p>{movie?.title}</p>
               </a>
               <div className="watchlater">
-                <AiFillHeart size={30} style={{ color: "#ffcb74" }} />
+                <AiFillHeart size={30} />
               </div>
             </div>
           </div>

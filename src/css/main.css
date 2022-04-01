@@ -238,6 +238,7 @@ header .container .menu .menu__list .menu-list__item.active::before {
     padding-top: 150px;
     flex-direction: column;
     top: 0;
+    height: 100vh;
     right: 0;
     left: 0;
   }
@@ -311,11 +312,17 @@ main .card-wrapper {
 }
 
 .watchlater {
+  left: 150px;
+  top: -93%;
   margin-top: 10px;
   transition: all 0.5s;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+  position: relative;
+  width: fit-content;
+  height: auto;
+  display: flex;
 }
 
 .watchlater > svg {
@@ -339,10 +346,10 @@ main .card-wrapper {
 }
 @media only screen and (max-width: 769px) {
   .card {
-    flex-basis: 50% !important;
+    flex-basis: 33.33% !important;
   }
 }
-@media only screen and (max-width: 515px) {
+@media only screen and (max-width: 571px) {
   .card {
     flex-basis: 50% !important;
   }
@@ -469,7 +476,6 @@ main .container {
 
 .filter__button {
   cursor: pointer;
-  gap: 5px;
   width: fit-content;
   background: #000;
   color: #fff;
@@ -482,6 +488,16 @@ main .container {
   color: #000 !important;
 }
 
+@media only screen and (max-width: 469px) {
+  .home__filter {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .home__filter {
+    font-size: 7px;
+  }
+}
 .media__cast {
   margin-top: 25px;
 }

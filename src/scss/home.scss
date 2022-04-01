@@ -3,7 +3,6 @@
 }
 .filter__button {
   cursor: pointer;
-  gap: 5px;
   width: fit-content;
   background: #000;
   color: #fff;
@@ -13,4 +12,15 @@
 .filter__button.active {
   background: #fff !important;
   color: #000 !important;
+}
+
+@media only screen and (max-width: 469px) {
+  .home__filter {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .home__filter {
+    font-size: 7px;
+  }
 }

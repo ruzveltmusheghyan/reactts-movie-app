@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Hamburger from "../hamburger/Hamurger";
 const Header = ({}) => {
   const navigation = [
     {
@@ -38,6 +39,7 @@ const Header = ({}) => {
               );
             })}
           </ul>
+          <Hamburger />
         </div>
       </div>
     </header>
