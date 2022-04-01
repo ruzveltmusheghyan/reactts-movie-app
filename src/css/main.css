@@ -374,7 +374,7 @@ main .container {
 
 .details__container {
   width: 70%;
-  margin: 150px auto;
+  margin: 150px auto 0;
   gap: 20px;
   display: flex;
 }
@@ -482,10 +482,10 @@ main .container {
   color: #000 !important;
 }
 
-.cast-wrapper {
-  padding: 40px;
-  flex-basis: 20%;
+.media__cast {
+  margin-top: 25px;
 }
+
 .cast-wrapper .cast-image__wrapper img {
   min-width: 130px;
   width: 100%;

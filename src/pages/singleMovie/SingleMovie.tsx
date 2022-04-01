@@ -123,9 +123,11 @@ const Movie = () => {
                 </div>
               </div>
             </div>
-            <div className="media__cast">
+            <div className="container">
               <h1>Cast</h1>
-              <Cast cast={cast} />
+              <div className="media__cast ">
+                <Cast cast={cast} />
+              </div>
             </div>
           </div>
         </>
