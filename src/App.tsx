@@ -10,11 +10,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path=":category/:id" element={<Movie />}></Route>
-          <Route path="top_rated" element={<Home />}></Route>
-          <Route path="trending" element={<Home />}></Route>
-          <Route path="upcoming" element={<Home />}></Route>
-          <Route path="/:category" element={<Catalog />}></Route>
+          <Route path="/movie/:id" element={<Movie />}></Route>
+          <Route path="/top_rated" element={<Home />}></Route>
+          <Route path="/trending" element={<Home />}></Route>
+          <Route path="/upcoming" element={<Home />}></Route>
           <Route path="/favorite" element={<Favorites />}></Route>
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
