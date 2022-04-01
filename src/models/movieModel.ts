@@ -3,6 +3,7 @@ export type Movie = {
   id: number;
   media_type: string;
   poster_path?: string;
+  vote_average: string;
 };
 
 export type Obj = {

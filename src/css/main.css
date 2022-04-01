@@ -277,6 +277,10 @@ main .card:hover {
   box-shadow: 5px 5px 15px 5px #000000;
   transform: scale(0.99);
 }
+main .card:hover .watchlater {
+  visibility: visible;
+  opacity: 1;
+}
 main .card img {
   color: white;
   min-width: 130px;
@@ -300,10 +304,13 @@ main .card-wrapper {
   flex-wrap: wrap;
 }
 
+.card-image-wrapper {
+  max-width: 165px;
+}
 .card-image-wrapper img {
   min-width: 130px;
   width: 100%;
-  object-fit: scale-down;
+  object-fit: cover !important;
   border-radius: 10px;
   max-height: 250px;
   min-height: 250px;
@@ -311,15 +318,34 @@ main .card-wrapper {
   cursor: pointer;
 }
 
+.average__vote {
+  width: fit-content;
+  top: -94%;
+  left: -14px;
+  background-color: #a0b7f7;
+  border: 1px solid #a0b7f7;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+  font-weight: bold;
+  color: #333;
+  width: 40px;
+  border-radius: 50%;
+  height: 40px;
+}
+
 .watchlater {
-  left: 150px;
-  top: -93%;
-  margin-top: 10px;
+  right: -147px;
+  bottom: 273px;
   transition: all 0.5s;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
   position: relative;
+  width: -moz-fit-content;
   width: fit-content;
   height: auto;
   display: flex;
@@ -327,11 +353,6 @@ main .card-wrapper {
 
 .watchlater > svg {
   color: white;
-}
-
-.card:hover > div > .watchlater {
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -369,14 +390,17 @@ main .container {
   z-index: -1000;
   opacity: 0.2;
   left: 0;
-  min-height: 350px;
-  height: 50%;
+  min-height: 50%;
   top: 0;
   width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(5px);
+}
+
+.container {
+  padding: 20px;
 }
 
 .details__container {

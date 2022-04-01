@@ -15,6 +15,11 @@ main {
       -webkit-box-shadow: 5px 5px 15px 5px #000000;
       box-shadow: 5px 5px 15px 5px #000000;
       transform: scale(0.99);
+
+      .watchlater {
+        visibility: visible;
+        opacity: 1;
+      }
     }
     img {
       color: white;
@@ -42,10 +47,11 @@ main {
   }
 }
 .card-image-wrapper {
+  max-width: 165px;
   img {
     min-width: 130px;
     width: 100%;
-    object-fit: scale-down;
+    object-fit: cover !important;
     border-radius: 10px;
     max-height: 250px;
     min-height: 250px;
@@ -53,15 +59,33 @@ main {
     cursor: pointer;
   }
 }
+.average__vote {
+  width: fit-content;
+  top: -94%;
+  left: -14px;
+  background-color: #a0b7f7;
+  border: 1px solid #a0b7f7;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+  font-weight: bold;
+  color: #333;
+  width: 40px;
+  border-radius: 50%;
+  height: 40px;
+}
 .watchlater {
-  left: 150px;
-  top: -93%;
-  margin-top: 10px;
+  right: -147px;
+  bottom: 273px;
   transition: all 0.5s;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
   position: relative;
+  width: -moz-fit-content;
   width: fit-content;
   height: auto;
   display: flex;
@@ -69,11 +93,6 @@ main {
 .watchlater > svg {
   color: white;
 }
-.card:hover > div > .watchlater {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
 @media only screen and (max-width: $breakpoint_lg) {
   .card {
     flex-basis: 20% !important;

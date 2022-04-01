@@ -40,6 +40,7 @@ const Home = () => {
       icon: <AiOutlineStar />,
     },
   ];
+  console.log(movies);
   useEffect(() => {
     switch (pathname) {
       case "/top_rated":

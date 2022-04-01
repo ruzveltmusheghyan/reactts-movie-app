@@ -18,15 +18,16 @@ const Card: React.FC<Props> = ({ media, fromPath }) => {
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     alt="no image found"
                   />
+                  <div className="watchlater">
+                    <AiFillHeart size={30} />
+                  </div>
                 </div>
               </a>
 
               <a className="movie__title">
                 <p>{movie?.title}</p>
               </a>
-              <div className="watchlater">
-                <AiFillHeart size={30} />
-              </div>
+              <span className="average__vote">{movie?.vote_average}</span>
             </div>
           </div>
         );
