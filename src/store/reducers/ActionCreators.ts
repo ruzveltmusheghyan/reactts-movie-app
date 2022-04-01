@@ -30,6 +30,7 @@ export const fetchSingleMovie =
     try {
       dispatch(movieSlice.actions.movieFetching());
       const { data } = await tmdbApi.getSingleMovie(category, movieId);
+      console.log(data);
       dispatch(movieSlice.actions.singleMovieFetchingSuccess(data));
     } catch (e) {}
   };

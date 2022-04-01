@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import Header from "../../components/header/Header";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { Obj, SingleMovie } from "../../models/movieModel";
@@ -10,16 +10,21 @@ import {
 import apiConfig from "../../api/config";
 import Cast from "../../components/cast/Cast";
 import AddFav from "../../components/addFav/AddFav";
+import { useNavigate } from "react-router";
+import Home from "../home/Home";
 const Movie = () => {
   const { category, id } = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [singleMovie, setSingleMovie] = useState<SingleMovie>();
   const movie = useAppSelector((state) => state.movieReducer.singleMovie);
   const cast = useAppSelector((state) => state.movieReducer.cast);
   useEffect(() => {
-    if (category && id) {
+    if (category === "movie" && id) {
       dispatch(fetchSingleMovie(category, id));
       dispatch(fetchMovieCast(id));
+    } else {
+      navigate("/");
     }
   }, []);
   useEffect(() => {
