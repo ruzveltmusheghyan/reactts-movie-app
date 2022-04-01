@@ -8,10 +8,12 @@ interface MovieState {
   cast: [];
   isLoading: boolean;
   error: string;
+  favoriteMovies: SingleMovie[];
 }
 
 const initialState: MovieState = {
   singleMovie: {
+    id: 0,
     title: "",
     original_title: "",
     backdrop_path: "",
@@ -27,12 +29,18 @@ const initialState: MovieState = {
     production_countries: [],
     overview: "",
   },
+  favoriteMovies: [],
   cast: [],
   movies: [],
   tv: [],
   isLoading: false,
   error: "",
 };
+
+localStorage.getItem("favoriteMovies") &&
+  (initialState.favoriteMovies = JSON.parse(
+    localStorage.getItem("favoriteMovies") || "[]"
+  ));
 
 export const movieSlice = createSlice({
   name: "media",
@@ -57,6 +65,22 @@ export const movieSlice = createSlice({
     },
     castFetching(state, action: PayloadAction<[]>) {
       state.cast = action.payload;
+    },
+    addTOFavorites(state, action: PayloadAction<SingleMovie>) {
+      const isFav = state.favoriteMovies.find((fav) =>
+        fav.id === action.payload.id ? true : false
+      );
+      if (isFav) {
+        state.favoriteMovies = state.favoriteMovies.filter(
+          (fav) => fav.id !== action.payload.id
+        );
+      } else {
+        state.favoriteMovies.push(action.payload);
+      }
+      localStorage.setItem(
+        "favoriteMovies",
+        JSON.stringify(state.favoriteMovies)
+      );
     },
   },
 });

@@ -1,9 +1,10 @@
 export type Movie = {
   title: string;
   id: number;
-  media_type: string;
+  media_type?: string;
   poster_path?: string;
-  vote_average: string;
+  vote_average?: string;
+  isFavorite?: boolean;
 };
 
 export type Obj = {
@@ -11,6 +12,7 @@ export type Obj = {
 };
 
 export type SingleMovie = {
+  id: number;
   title: string;
   original_title: string;
   backdrop_path: string;

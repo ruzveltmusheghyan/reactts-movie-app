@@ -38,6 +38,12 @@
       object-fit: cover;
     }
   }
+  .btn {
+    cursor: pointer;
+    min-width: 150px;
+    border: none;
+    width: 50%;
+  }
   .movie__title {
     font-family: "Montserrat", sans-serif;
     font-size: 25px;

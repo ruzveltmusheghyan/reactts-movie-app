@@ -1,25 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "../hamburger/Hamurger";
+import { useLocation } from "react-router";
+import { useAppSelector } from "../../hooks/redux";
 const Header = ({}) => {
+  const location = useLocation();
+  const favoriteMovies = useAppSelector(
+    (state) => state.movieReducer.favoriteMovies
+  );
   const navigation = [
     {
       display: "Home",
       path: "/",
     },
-    {
-      display: "Movies",
-      path: "/movie",
-    },
-    {
-      display: "TV series",
-      path: "/tv",
-    },
+
     {
       display: "Favorite",
       path: "/favorite",
     },
   ];
+
+  const active = navigation.findIndex((i) => i.path === location.pathname);
   return (
     <header>
       <div className="background-container"></div>
@@ -31,13 +32,21 @@ const Header = ({}) => {
         </div>
         <div className="menu">
           <ul className="menu__list flex">
-            {navigation.map((element, index) => {
-              return (
-                <li key={index} className="menu-list__item">
-                  <Link to={element.path}>{element.display}</Link>
-                </li>
-              );
-            })}
+            {navigation.map((e, i) => (
+              <li
+                key={i}
+                className={
+                  i === active ? "menu-list__item active" : "menu-list__item"
+                }
+              >
+                <Link to={e.path}>{e.display}</Link>
+                {e.path === "/favorite" && favoriteMovies.length > 0 ? (
+                  <span className="watch-count">{favoriteMovies.length}</span>
+                ) : (
+                  ""
+                )}
+              </li>
+            ))}
           </ul>
           <Hamburger />
         </div>

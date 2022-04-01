@@ -423,6 +423,12 @@ main .container {
   max-height: 500px;
   object-fit: cover;
 }
+.details__container .btn {
+  cursor: pointer;
+  min-width: 150px;
+  border: none;
+  width: 50%;
+}
 .details__container .movie__title {
   font-family: "Montserrat", sans-serif;
   font-size: 25px;

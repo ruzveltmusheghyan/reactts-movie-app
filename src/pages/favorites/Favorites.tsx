@@ -1,7 +1,18 @@
 import Header from "../../components/header/Header";
 import Card from "../../components/card/Card";
+import { useAppSelector } from "../../hooks/redux";
+import { useEffect, useState } from "react";
+import { SingleMovie } from "../../models/movieModel";
+import { spawn } from "child_process";
 
 const Favorites = () => {
+  const favoriteMovies = useAppSelector(
+    (state) => state.movieReducer.favoriteMovies
+  );
+  const [movies, setMovies] = useState<SingleMovie[]>([]);
+  useEffect(() => {
+    setMovies(favoriteMovies);
+  }, [favoriteMovies]);
   return (
     <>
       <Header />
@@ -11,11 +22,11 @@ const Favorites = () => {
             <div className="category-text flex justify-between">
               Favorite Movies
             </div>
-          </div>
-          <div>
-            <div className="category-text flex justify-between">
-              Favorite Tv
-            </div>
+            {movies.length > 0 ? (
+              <Card movies={movies} />
+            ) : (
+              <p>No favorite movies :(</p>
+            )}
           </div>
         </div>
       </main>

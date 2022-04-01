@@ -15,7 +15,7 @@ const App = () => {
           <Route path="trending" element={<Home />}></Route>
           <Route path="upcoming" element={<Home />}></Route>
           <Route path="/:category" element={<Catalog />}></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route path="/favorite" element={<Favorites />}></Route>
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </BrowserRouter>

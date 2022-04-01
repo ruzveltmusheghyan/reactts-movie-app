@@ -1,6 +1,7 @@
 import tmdbApi from "../../api/tmdbApi";
 import { AppDispatch } from "../store";
 import { movieSlice } from "./MovieSlice";
+
 export const fetchTrendingMovies = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(movieSlice.actions.movieFetching());

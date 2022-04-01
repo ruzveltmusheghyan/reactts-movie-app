@@ -9,6 +9,7 @@ import {
 } from "../../store/reducers/ActionCreators";
 import apiConfig from "../../api/config";
 import Cast from "../../components/cast/Cast";
+import AddFav from "../../components/addFav/AddFav";
 const Movie = () => {
   const { category, id } = useParams();
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ const Movie = () => {
   useEffect(() => {
     setSingleMovie(movie);
   }, [movie]);
-  console.log(cast);
+
   return (
     <>
       {singleMovie && Object.keys(singleMovie).length > 1 ? (
@@ -121,6 +122,7 @@ const Movie = () => {
                     </tbody>
                   </table>
                 </div>
+                <AddFav movie={movie} />
               </div>
             </div>
             <div className="container">

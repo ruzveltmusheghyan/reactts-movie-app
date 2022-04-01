@@ -40,7 +40,6 @@ const Home = () => {
       icon: <AiOutlineStar />,
     },
   ];
-  console.log(movies);
   useEffect(() => {
     switch (pathname) {
       case "/top_rated":
@@ -92,7 +91,7 @@ const Home = () => {
                 <div></div>
               </div>
             ) : (
-              <Card fromPath={pathname} media={movieState} />
+              <Card fromPath={pathname} movies={movieState} />
             )}
           </div>
         </div>
