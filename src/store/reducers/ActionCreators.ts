@@ -1,7 +1,7 @@
 import tmdbApi from "../../api/tmdbApi";
 import { AppDispatch } from "../store";
 import { movieSlice } from "./MovieSlice";
-
+import { useNavigate } from "react-router";
 export const fetchTrendingMovies = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(movieSlice.actions.movieFetching());
@@ -30,7 +30,7 @@ export const fetchSingleMovie =
     try {
       dispatch(movieSlice.actions.movieFetching());
       const { data } = await tmdbApi.getSingleMovie(category, movieId);
-      console.log(data);
+
       dispatch(movieSlice.actions.singleMovieFetchingSuccess(data));
     } catch (e) {}
   };
@@ -42,3 +42,9 @@ export const fetchMovieCast =
       dispatch(movieSlice.actions.castFetching(data.cast));
     } catch (e) {}
   };
+export const fetchSearch = (query: string) => async (dispatch: AppDispatch) => {
+  try {
+    const { data } = await tmdbApi.getSearchResults(query);
+    dispatch(movieSlice.actions.searchFetching(data.results));
+  } catch (e) {}
+};

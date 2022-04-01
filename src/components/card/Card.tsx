@@ -5,32 +5,36 @@ interface Props {
   fromPath?: string;
 }
 
-const handleFavorite = (movie: Movie) => {};
-
 const Card: React.FC<Props> = ({ movies, fromPath }) => {
   return (
     <div className="card-wrapper flex">
-      {movies?.map((movie: Movie) => {
-        return (
-          <div key={movie.id} className="card flex align-center">
-            <div>
-              <div className="card-image-wrapper">
-                <a href={`${fromPath !== "tv" ? "/movie" : "tv"}/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt="no image found"
-                  />
-                </a>
-              </div>
+      {movies?.length > 0 ? (
+        movies?.map((movie: Movie) => {
+          return (
+            <div key={movie.id} className="card flex align-center">
+              <div>
+                <div className="card-image-wrapper">
+                  <a
+                    href={`${fromPath !== "tv" ? "/movie" : "tv"}/${movie.id}`}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt="no image found"
+                    />
+                  </a>
+                </div>
 
-              <a className="movie__title">
-                <p>{movie?.title}</p>
-              </a>
-              <span className="average__vote">{movie?.vote_average}</span>
+                <a className="movie__title">
+                  <p>{movie?.title}</p>
+                </a>
+                <span className="average__vote">{movie?.vote_average}</span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <p>No results</p>
+      )}
     </div>
   );
 };

@@ -500,11 +500,14 @@ main .container {
   position: relative;
 }
 
-.home__filter {
+.filter__search {
+  margin-bottom: 50px;
+  align-items: center;
+}
+.filter__search .home__filter {
   gap: 25px;
 }
-
-.filter__button {
+.filter__search .filter__button {
   cursor: pointer;
   width: fit-content;
   background: #000;
@@ -512,12 +515,17 @@ main .container {
   border-radius: 5px;
   padding: 9px 15px;
 }
-
-.filter__button.active {
+.filter__search .filter__button.active {
   background: #fff !important;
   color: #000 !important;
 }
 
+@media only screen and (max-width: 800px) {
+  .filter__search {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
 @media only screen and (max-width: 469px) {
   .home__filter {
     font-size: 10px;

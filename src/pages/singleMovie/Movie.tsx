@@ -30,7 +30,6 @@ const Movie = () => {
   useEffect(() => {
     setSingleMovie(movie);
   }, [movie]);
-
   return (
     <>
       {singleMovie && Object.keys(singleMovie).length > 1 ? (

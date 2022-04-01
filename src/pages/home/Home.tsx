@@ -14,6 +14,7 @@ import {
   fetchTrendingMovies,
   fetchUpcomingMovies,
 } from "../../store/reducers/ActionCreators";
+import Search from "../../components/search/Search";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -61,28 +62,30 @@ const Home = () => {
       <main>
         <div className="container">
           <div>
-            <div className="home__filter flex">
-              {navigation.map((el, i) => {
-                return (
-                  <Link key={i} to={el.pathname}>
-                    <span
-                      className={`filter__button flex align-center justify-center ${
-                        pathname === el.pathname
-                          ? "active"
-                          : "" ||
-                            (pathname === "/" && el.pathname === "/trending"
-                              ? "active"
-                              : "")
-                      }`}
-                    >
-                      {el.icon} {el.display}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="category-text flex justify-between">
-              {/* Trending movies */}
+            <div className="filter__search flex justify-between">
+              <div className="home__filter flex">
+                {navigation.map((el, i) => {
+                  return (
+                    <Link key={i} to={el.pathname}>
+                      <span
+                        className={`filter__button flex align-center justify-center ${
+                          pathname === el.pathname
+                            ? "active"
+                            : "" ||
+                              (pathname === "/" && el.pathname === "/trending"
+                                ? "active"
+                                : "")
+                        }`}
+                      >
+                        {el.icon} {el.display}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+              <div>
+                <Search />
+              </div>
             </div>
             {isLoading ? (
               <div className="loading">
