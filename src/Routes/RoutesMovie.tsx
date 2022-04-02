@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { list } from "./list";
-import { useId } from "react";
+import { nanoid } from "nanoid";
 const RoutesMovie: React.FC = () => {
-  const id = useId();
   return (
     <BrowserRouter>
       <Routes>
         {list.map((link) => {
           return (
-            <Route key={id} path={link.path} element={<link.element />}></Route>
+            <Route
+              key={nanoid()}
+              path={link.path}
+              element={<link.element />}
+            ></Route>
           );
         })}
       </Routes>
