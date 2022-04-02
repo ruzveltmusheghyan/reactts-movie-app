@@ -3,21 +3,13 @@ import { Link } from "react-router-dom";
 import Hamburger from "../hamburger/Hamurger";
 import { useLocation } from "react-router";
 import { useAppSelector } from "../../hooks/redux";
+import { navigation } from "./navigation";
 const Header: React.FC = ({}) => {
   const location = useLocation();
   const favoriteMovies = useAppSelector(
     (state) => state.movieReducer.favoriteMovies
   );
-  const navigation = [
-    {
-      display: "Home",
-      path: "/",
-    },
-    {
-      display: "Favorite",
-      path: "/favorite",
-    },
-  ];
+
   const active = navigation.findIndex((i) => i.path === location.pathname);
   return (
     <header>
@@ -38,10 +30,8 @@ const Header: React.FC = ({}) => {
                 }
               >
                 <Link to={e.path}>{e.display}</Link>
-                {e.path === "/favorite" && favoriteMovies.length > 0 ? (
+                {e.path === "/favorite" && favoriteMovies.length > 0 && (
                   <span className="watch-count">{favoriteMovies.length}</span>
-                ) : (
-                  ""
                 )}
               </li>
             ))}
