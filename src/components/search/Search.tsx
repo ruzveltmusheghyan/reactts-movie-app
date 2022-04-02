@@ -1,23 +1,30 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { useAppDispatch } from "../../hooks/redux";
-import { SingleMovie } from "../../models/movieModel";
+import { useLocation, useParams } from "react-router";
 import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
 const Search = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   function handleQuery(text: string) {
     window.addEventListener("keyup", () => {
       fetch(text);
     });
   }
+
   let id: ReturnType<typeof setTimeout>;
   function fetch(text: string) {
     if (id !== undefined) {
       clearTimeout(id);
     }
     id = setTimeout(() => {
-      dispatch(fetchSearch(text));
+      if (pathname === "/search") {
+        dispatch(fetchSearch(text));
+      } else {
+        navigate(`search`);
+        dispatch(fetchSearch(text));
+      }
     }, 400);
   }
 

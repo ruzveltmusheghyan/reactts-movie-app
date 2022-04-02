@@ -220,6 +220,10 @@ header .container .menu .menu__list .menu-list__item.active::before {
 }
 
 @media only screen and (max-width: 769px) {
+  .watch-count {
+    display: none !important;
+  }
+
   .menu__list {
     opacity: 0;
     visibility: hidden;

@@ -67,6 +67,7 @@ export const movieSlice = createSlice({
       state.cast = action.payload;
     },
     searchFetching(state, action: PayloadAction<[]>) {
+      state.isLoading = false;
       state.movies = action.payload;
     },
     addTOFavorites(state, action: PayloadAction<SingleMovie>) {

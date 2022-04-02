@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import Header from "../../components/header/Header";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import {
   AiOutlineStar,
   AiOutlineFire,
@@ -16,6 +16,7 @@ import {
 } from "../../store/reducers/ActionCreators";
 import Search from "../../components/search/Search";
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const [movieState, setMovieState] = useState([]);
@@ -45,12 +46,15 @@ const Home = () => {
     switch (pathname) {
       case "/top_rated":
         dispatch(fetchTopRatedMovies());
+        navigate("/top_rated");
         break;
       case "/trending":
         dispatch(fetchTrendingMovies());
         break;
       case "/upcoming":
         dispatch(fetchUpcomingMovies());
+        break;
+      case "/search":
         break;
       default:
         dispatch(fetchTrendingMovies());

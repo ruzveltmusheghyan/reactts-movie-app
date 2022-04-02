@@ -114,6 +114,9 @@ header {
 }
 
 @media only screen and (max-width: $breakpoint_sm) {
+  .watch-count {
+    display: none !important;
+  }
   .menu__list {
     opacity: 0;
     visibility: hidden;
