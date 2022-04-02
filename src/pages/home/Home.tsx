@@ -25,6 +25,7 @@ const Home = () => {
   useEffect(() => {
     setMovieState(movies);
   }, [movies]);
+  console.log(movies);
   const navigation = [
     {
       pathname: "/trending",
