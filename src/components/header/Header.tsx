@@ -24,7 +24,7 @@ const Header: React.FC = ({}) => {
       <div className="background-container"></div>
       <div className="container align-start justify-between flex">
         <div className="logo">
-          <Link to="/trending_now">
+          <Link to="/trending">
             <h1>Movie App</h1>
           </Link>
         </div>
