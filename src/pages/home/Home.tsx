@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState, useTransition } from "react";
 import Card from "../../components/card/Card";
 import Header from "../../components/header/Header";
 import { Link } from "react-router-dom";
@@ -19,13 +19,13 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const [isPending, startTransition] = useTransition();
   const [movieState, setMovieState] = useState([]);
   const { movies } = useAppSelector((state) => state.movieReducer);
   const { isLoading } = useAppSelector((state) => state.movieReducer);
   useEffect(() => {
     setMovieState(movies);
   }, [movies]);
-  console.log(movies);
   const navigation = [
     {
       pathname: "/trending",
@@ -46,19 +46,26 @@ const Home = () => {
   useEffect(() => {
     switch (pathname) {
       case "/top_rated":
-        dispatch(fetchTopRatedMovies());
-        navigate("/top_rated");
+        startTransition(() => {
+          dispatch(fetchTopRatedMovies());
+        });
         break;
       case "/trending":
-        dispatch(fetchTrendingMovies());
+        startTransition(() => {
+          dispatch(fetchTrendingMovies());
+        });
         break;
       case "/upcoming":
-        dispatch(fetchUpcomingMovies());
+        startTransition(() => {
+          dispatch(fetchUpcomingMovies());
+        });
         break;
       case "/search":
         break;
       default:
-        dispatch(fetchTrendingMovies());
+        startTransition(() => {
+          dispatch(fetchTrendingMovies());
+        });
     }
   }, [pathname]);
   return (

@@ -19,6 +19,7 @@ const Movie = () => {
   const [singleMovie, setSingleMovie] = useState<SingleMovie>();
   const movie = useAppSelector((state) => state.movieReducer.singleMovie);
   const cast = useAppSelector((state) => state.movieReducer.cast);
+  const errorFetching = useAppSelector((state) => state.movieReducer.error);
   useEffect(() => {
     if (category === "movie" && id) {
       dispatch(fetchSingleMovie(category, id));
@@ -30,6 +31,11 @@ const Movie = () => {
   useEffect(() => {
     setSingleMovie(movie);
   }, [movie]);
+  useEffect(() => {
+    if (errorFetching) {
+      navigate("/");
+    }
+  }, [errorFetching]);
   return (
     <>
       {singleMovie && Object.keys(singleMovie).length > 1 ? (

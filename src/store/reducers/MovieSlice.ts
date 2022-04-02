@@ -7,7 +7,7 @@ interface MovieState {
   tv: [];
   cast: [];
   isLoading: boolean;
-  error: string;
+  error: boolean;
   favoriteMovies: SingleMovie[];
 }
 
@@ -34,7 +34,7 @@ const initialState: MovieState = {
   movies: [],
   tv: [],
   isLoading: false,
-  error: "",
+  error: false,
 };
 
 localStorage.getItem("favoriteMovies") &&
@@ -49,20 +49,18 @@ export const movieSlice = createSlice({
     movieFetching(state) {
       state.isLoading = true;
     },
+    fetchingError(state) {
+      state.error = true;
+    },
     movieFetchingSuccess(state, action: PayloadAction<[]>) {
       state.isLoading = false;
-      state.error = "";
       state.movies = action.payload;
     },
     singleMovieFetchingSuccess(state, action: PayloadAction<SingleMovie>) {
       state.isLoading = false;
-      state.error = "";
       state.singleMovie = action.payload;
     },
-    movieFetchingError(state, action: PayloadAction<string>) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+
     castFetching(state, action: PayloadAction<[]>) {
       state.cast = action.payload;
     },
