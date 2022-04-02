@@ -1,4 +1,5 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { Movie } from "../../models/movieModel";
 interface Props {
   movies: Movie[];
@@ -14,19 +15,17 @@ const Card: React.FC<Props> = ({ movies, fromPath }) => {
             <div key={movie.id} className="card flex align-center">
               <div>
                 <div className="card-image-wrapper">
-                  <a
-                    href={`${fromPath !== "tv" ? "/movie" : "tv"}/${movie.id}`}
-                  >
+                  <Link to={`/movie/${movie.id}`}>
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt="no image found"
                     />
-                  </a>
+                  </Link>
                 </div>
 
-                <a className="movie__title">
+                <Link to={`/movie/${movie.id}`} className="movie__title">
                   <p>{movie?.title}</p>
-                </a>
+                </Link>
                 <span className="average__vote">{movie?.vote_average}</span>
               </div>
             </div>
