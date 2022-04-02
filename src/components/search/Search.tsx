@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router";
 import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
 import { useRef, useTransition, useState, useEffect } from "react";
-const Search = () => {
+const Search: React.FC = () => {
   const [isPending, startTransition] = useTransition();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

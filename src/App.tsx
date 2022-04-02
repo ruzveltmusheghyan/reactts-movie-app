@@ -3,7 +3,7 @@ import Home from "./pages/home/Home";
 import SingleMovie from "./pages/singleMovie/Movie";
 import Favorites from "./pages/favorites/Favorites";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="product-wrapper">
       <BrowserRouter>

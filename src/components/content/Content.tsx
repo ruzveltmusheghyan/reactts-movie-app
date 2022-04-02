@@ -1,6 +1,6 @@
 import Card from "../card/Card";
 import Search from "../search/Search";
-const Content = () => {
+const Content: React.FC = () => {
   return (
     <main>
       <div className="container">

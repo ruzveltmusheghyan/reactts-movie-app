@@ -12,7 +12,7 @@ import Cast from "../../components/cast/Cast";
 import AddFav from "../../components/addFav/AddFav";
 import { useNavigate } from "react-router";
 import Home from "../home/Home";
-const Movie = () => {
+const Movie: React.FC = () => {
   const { category, id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../../components/header/Header";
 import Content from "../../components/content/Content";
-const Catalog = () => {
+const Catalog: React.FC = () => {
   return (
     <>
       <Header />

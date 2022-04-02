@@ -15,7 +15,7 @@ import {
   fetchUpcomingMovies,
 } from "../../store/reducers/ActionCreators";
 import Search from "../../components/search/Search";
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();

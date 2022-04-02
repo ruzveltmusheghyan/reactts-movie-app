@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { SingleMovie } from "../../models/movieModel";
 import { spawn } from "child_process";
 
-const Favorites = () => {
+const Favorites: React.FC = () => {
   const favoriteMovies = useAppSelector(
     (state) => state.movieReducer.favoriteMovies
   );
