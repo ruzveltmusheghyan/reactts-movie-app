@@ -9,7 +9,7 @@ const Search: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {
+  const handleSearch = () => {
     if (searchValue.trim().length === 0) {
       navigate("/trending");
     } else {
@@ -18,7 +18,7 @@ const Search: React.FC = () => {
         dispatch(fetchSearch(searchValue));
       });
     }
-  }, [searchValue]);
+  };
 
   return (
     <div className="search__input flex justify-center align-center">
@@ -27,7 +27,11 @@ const Search: React.FC = () => {
         type=""
         placeholder="Search..."
       />
-      <AiOutlineSearch className="search__icon" size={20} />
+      <AiOutlineSearch
+        onClick={() => handleSearch()}
+        className="search__icon"
+        size={20}
+      />
     </div>
   );
 };
