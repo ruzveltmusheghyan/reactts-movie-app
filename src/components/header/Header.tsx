@@ -8,7 +8,6 @@ import { getFavoriteMovies } from "../../store/reducers/MovieSlice";
 const Header: React.FC = ({}) => {
   const location = useLocation();
   const favoriteMovies = useSelector(getFavoriteMovies);
-
   const active = navigation.findIndex((i) => i.path === location.pathname);
 
   return (

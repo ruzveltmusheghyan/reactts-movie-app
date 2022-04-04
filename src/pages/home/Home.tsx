@@ -56,7 +56,7 @@ const Home: React.FC = () => {
                                 : "")
                         }`}
                       >
-                        {<el.icon />} {el.display}
+                        {<el.icon size={20} />} {el.display}
                       </span>
                     </Link>
                   );
