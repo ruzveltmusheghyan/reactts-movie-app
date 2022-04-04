@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { isLogin, SingleMovie } from "../../models/movieModel";
+import { SingleMovie } from "../../models/movieModel";
 import { RootState } from "../store";
 interface MovieState {
   singleMovie: SingleMovie;
