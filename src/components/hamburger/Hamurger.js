@@ -8,18 +8,18 @@ function Hamburger() {
     let icon = document.querySelector(".hamburger-icon");
     let menu = document.querySelector(".menu__list");
     let body = document.querySelector("body");
-    body.classList.remove("active");
-    menu.classList.remove("open");
-    icon.classList.remove("open");
+    body?.classList.remove("active");
+    menu?.classList.remove("open");
+    icon?.classList.remove("open");
   }
   function openMenu() {
     setIsMenu(true);
     let icon = document.querySelector(".hamburger-icon");
     let menu = document.querySelector(".menu__list");
     let body = document.querySelector("body");
-    body.classList.toggle("active");
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
+    body?.classList.toggle("active");
+    menu?.classList.toggle("open");
+    icon?.classList.toggle("open");
   }
   if (isMenu) {
     window.addEventListener("resize", () => {
