@@ -4,47 +4,35 @@ import Header from "../../components/header/Header";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import { nanoid } from "nanoid";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
   fetchTopRatedMovies,
   fetchTrendingMovies,
   fetchUpcomingMovies,
 } from "../../store/reducers/ActionCreators";
 import { navigation } from "./navigation";
+import { getMovies, isLoading } from "../../store/reducers/MovieSlice";
 import Search from "../../components/search/Search";
+import { useDispatch, useSelector } from "react-redux";
 const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const [isPending, startTransition] = useTransition();
-  const [movieState, setMovieState] = useState([]);
-  const { movies } = useAppSelector((state) => state.movieReducer);
-  const { isLoading } = useAppSelector((state) => state.movieReducer);
-  useEffect(() => {
-    setMovieState(movies);
-  }, [movies]);
+  const movies = useSelector(getMovies);
+  const loading = useSelector(isLoading);
   useEffect(() => {
     switch (pathname) {
       case "/top_rated":
-        startTransition(() => {
-          dispatch(fetchTopRatedMovies());
-        });
+        dispatch(fetchTopRatedMovies());
         break;
       case "/trending":
-        startTransition(() => {
-          dispatch(fetchTrendingMovies());
-        });
+        dispatch(fetchTrendingMovies());
         break;
       case "/upcoming":
-        startTransition(() => {
-          dispatch(fetchUpcomingMovies());
-        });
+        dispatch(fetchUpcomingMovies());
         break;
       case "/search":
         break;
       default:
-        startTransition(() => {
-          dispatch(fetchTrendingMovies());
-        });
+        dispatch(fetchTrendingMovies());
     }
   }, [pathname]);
   return (
@@ -78,14 +66,14 @@ const Home: React.FC = () => {
                 <Search />
               </div>
             </div>
-            {isLoading ? (
+            {loading ? (
               <div className="loading">
                 <div></div>
                 <div></div>
                 <div></div>
               </div>
             ) : (
-              <Card fromPath={pathname} movies={movieState} />
+              <Card fromPath={pathname} movies={movies} />
             )}
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { AiOutlineSearch } from "react-icons/ai";
-import { useAppDispatch } from "../../hooks/redux";
 import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
 import { useTransition, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 const Search: React.FC = () => {
   const [isPending, startTransition] = useTransition();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = () => {

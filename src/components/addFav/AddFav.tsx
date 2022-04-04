@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { SingleMovie } from "../../models/movieModel";
-import { movieSlice } from "../../store/reducers/MovieSlice";
+import {
+  addToFavorites,
+  getFavoriteMovies,
+} from "../../store/reducers/MovieSlice";
 
 interface Props {
   movie: SingleMovie;
@@ -10,11 +13,9 @@ interface Props {
 
 const AddFav: React.FC<Props> = (movie) => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
+  const favoriteMovies = useSelector(getFavoriteMovies);
   const [isFav, setIsFav] = useState(false);
-  const favoriteMovies = useAppSelector(
-    (state) => state.movieReducer.favoriteMovies
-  );
   useEffect(() => {
     const isFavorite = favoriteMovies.find((fav) =>
       fav.id === Number(id) ? true : false
@@ -22,7 +23,7 @@ const AddFav: React.FC<Props> = (movie) => {
     isFavorite ? setIsFav(true) : setIsFav(false);
   }, [favoriteMovies]);
   const handleFavorite = (movie: SingleMovie) => {
-    dispatch(movieSlice.actions.addTOFavorites(movie));
+    dispatch(addToFavorites(movie));
   };
   return (
     <div>

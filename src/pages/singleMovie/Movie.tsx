@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
 import Header from "../../components/header/Header";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { Obj, SingleMovie } from "../../models/movieModel";
+import { useDispatch, useSelector } from "react-redux";
+import { Obj } from "../../models/movieModel";
 import {
   fetchMovieCast,
   fetchSingleMovie,
 } from "../../store/reducers/ActionCreators";
 import apiConfig from "../../api/config";
-import Cast from "../../components/cast/Cast";
+import CastSlider from "../../components/cast/Cast";
 import AddFav from "../../components/addFav/AddFav";
 import { useNavigate } from "react-router";
-import Home from "../home/Home";
+import {
+  getCast,
+  getSingleMovie,
+  isError,
+} from "../../store/reducers/MovieSlice";
+import { nanoid } from "nanoid";
 const Movie: React.FC = () => {
   const { category, id } = useParams();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [singleMovie, setSingleMovie] = useState<SingleMovie>();
-  const movie = useAppSelector((state) => state.movieReducer.singleMovie);
-  const cast = useAppSelector((state) => state.movieReducer.cast);
-  const errorFetching = useAppSelector((state) => state.movieReducer.error);
+  const singleMovie = useSelector(getSingleMovie);
+  const cast = useSelector(getCast);
+  const errorFetching = useSelector(isError);
   useEffect(() => {
     if (category === "movie" && id) {
       dispatch(fetchSingleMovie(category, id));
@@ -29,16 +33,11 @@ const Movie: React.FC = () => {
     }
   }, []);
   useEffect(() => {
-    setSingleMovie(movie);
-  }, [movie]);
-  useEffect(() => {
-    if (errorFetching) {
-      navigate("/");
-    }
+    if (errorFetching) navigate("/");
   }, [errorFetching]);
   return (
     <>
-      {singleMovie && Object.keys(singleMovie).length > 1 ? (
+      {singleMovie ? (
         <>
           <div
             className="background_poster"
@@ -120,9 +119,9 @@ const Movie: React.FC = () => {
                       <tr className="detail-row">
                         <td className="detail-data">Country </td>
                         {singleMovie?.production_countries.map(
-                          (country: Obj, i: number) => {
+                          (country: Obj) => {
                             return (
-                              <td key={i} className="detail-data">
+                              <td key={nanoid()} className="detail-data">
                                 {country.name}
                               </td>
                             );
@@ -132,13 +131,13 @@ const Movie: React.FC = () => {
                     </tbody>
                   </table>
                 </div>
-                <AddFav movie={movie} />
+                <AddFav movie={singleMovie} />
               </div>
             </div>
             <div className="container">
               <h1>Cast</h1>
               <div className="media__cast ">
-                <Cast cast={cast} />
+                <CastSlider cast={cast} />
               </div>
             </div>
           </div>

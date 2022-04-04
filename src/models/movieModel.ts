@@ -2,21 +2,21 @@ export type Movie = {
   title: string;
   id: number;
   media_type?: string;
-  poster_path?: string;
+  poster_path: string;
   vote_average?: string;
   isFavorite?: boolean;
 };
 
 export type Obj = {
-  [key: string]: any;
+  [key: string]: string;
 };
 
-export type SingleMovie = {
-  id: number;
-  title: string;
+export type isLogin = {
+  email?: string;
+};
+export interface SingleMovie extends Movie {
   original_title: string;
   backdrop_path: string;
-  poster_path: string;
   name: string;
   genres: [];
   release_date: string;
@@ -27,4 +27,4 @@ export type SingleMovie = {
   status: string;
   production_countries: [];
   overview: string;
-};
+}

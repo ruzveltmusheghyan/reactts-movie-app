@@ -1,14 +1,12 @@
 import Header from "../../components/header/Header";
 import Card from "../../components/card/Card";
-import { useAppSelector } from "../../hooks/redux";
 import { useEffect, useState } from "react";
 import { SingleMovie } from "../../models/movieModel";
-import { spawn } from "child_process";
+import { useSelector } from "react-redux";
+import { getFavoriteMovies } from "../../store/reducers/MovieSlice";
 
 const Favorites: React.FC = () => {
-  const favoriteMovies = useAppSelector(
-    (state) => state.movieReducer.favoriteMovies
-  );
+  const favoriteMovies = useSelector(getFavoriteMovies);
   const [movies, setMovies] = useState<SingleMovie[]>([]);
   useEffect(() => {
     setMovies(favoriteMovies);

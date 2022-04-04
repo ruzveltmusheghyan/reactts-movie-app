@@ -5,7 +5,7 @@ interface Props {
   cast: [];
 }
 
-const Cast: React.FC<Props> = ({ cast }) => {
+const CastSlider: React.FC<Props> = ({ cast }) => {
   var settings = {
     dots: false,
     infinite: true,
@@ -38,4 +38,4 @@ const Cast: React.FC<Props> = ({ cast }) => {
     </Slider>
   );
 };
-export default Cast;
+export default CastSlider;

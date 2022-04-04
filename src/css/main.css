@@ -219,6 +219,66 @@ header .container .menu .menu__list .menu-list__item.active::before {
   width: 100%;
 }
 
+.login {
+  display: block;
+}
+
+.login.active {
+  display: none;
+}
+
+.login-container {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  bottom: -400%;
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background: rgba(22, 22, 22, 0.99);
+  border-radius: 5px;
+  width: 350px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-container .credentials {
+  gap: 25px;
+  flex-direction: column;
+}
+.login-container button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  background: #19aa8d;
+}
+.login-container .sign-container input {
+  width: 100%;
+  font-size: 14px;
+  position: relative;
+  padding: 5px 0 10px 25px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #bdbdbd;
+  border-bottom: 1px solid white;
+}
+.login-container .sign-container svg {
+  position: absolute;
+  left: 40px;
+  z-index: 2;
+}
+
+.login-container.active {
+  transition: 0.5s all;
+  opacity: 1;
+  visibility: visible;
+}
+
 @media only screen and (max-width: 769px) {
   .watch-count {
     display: none !important;
