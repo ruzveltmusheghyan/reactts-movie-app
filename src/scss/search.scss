@@ -1,16 +1,15 @@
 .search__input {
   input {
-    font-family: "sf-pro-lighter";
-    border-radius: 40px;
-    border: none;
-    outline: none;
-    padding: 5px 25px;
+    padding: 5px 50px 5px 0px;
+    color: white;
+    border-color: #fff !important;
   }
   .search__icon {
     height: 100%;
+    z-index: 0;
     cursor: pointer;
-    color: black;
-    left: -25px;
+    color: white;
+    left: -40px;
     position: relative;
   }
 }

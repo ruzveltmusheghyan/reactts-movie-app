@@ -3,6 +3,7 @@ import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
 import { useTransition, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Input, TextField } from "@mui/material";
 const Search: React.FC = () => {
   const [isPending, startTransition] = useTransition();
   const navigate = useNavigate();
@@ -22,15 +23,15 @@ const Search: React.FC = () => {
 
   return (
     <div className="search__input flex justify-center align-center">
-      <input
+      <Input
         onChange={(e) => setSearchValue(e.target.value)}
-        type=""
-        placeholder="Search..."
+        size="small"
+        placeholder="search..."
       />
       <AiOutlineSearch
         onClick={() => handleSearch()}
         className="search__icon"
-        size={20}
+        size={25}
       />
     </div>
   );

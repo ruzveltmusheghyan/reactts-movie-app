@@ -18,32 +18,22 @@
   padding: 20px;
 }
 .details__container {
-  width: 70%;
+  width: 100%;
   margin: 150px auto 0;
   gap: 20px;
   display: flex;
   .details__other {
     min-width: 360px;
-    width: 80%;
-    max-width: 700px;
-    flex-grow: 1;
     flex-direction: column;
   }
   .details__poster {
     img {
       border-radius: 40px;
-      min-width: 200px;
-      width: 100%;
-      max-height: 500px;
+      max-height: 450px;
       object-fit: cover;
     }
   }
-  .btn {
-    cursor: pointer;
-    min-width: 150px;
-    border: none;
-    width: 50%;
-  }
+
   .movie__title {
     font-family: "Montserrat", sans-serif;
     font-size: 25px;
@@ -53,20 +43,11 @@
   }
   .genres {
     flex-wrap: wrap;
-    gap: 5px;
-    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+    max-width: 350px;
   }
   .genre__name {
-    margin-top: 15px;
-    height: fit-content;
-    display: block;
-    width: fit-content;
-    padding: 5px 20px;
-    color: #ffcb74;
-    font-size: 15px;
-    border-radius: 20px;
-    background: transparent;
-    border: 1px solid #ffcb74;
   }
   .overview {
     margin: 25px 0;

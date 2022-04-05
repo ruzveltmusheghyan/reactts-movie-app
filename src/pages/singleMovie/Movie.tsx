@@ -17,6 +17,7 @@ import {
   isError,
 } from "../../store/reducers/MovieSlice";
 import { nanoid } from "nanoid";
+import { Chip } from "@mui/material";
 const Movie: React.FC = () => {
   const { category, id } = useParams();
   const dispatch = useDispatch();
@@ -62,17 +63,22 @@ const Movie: React.FC = () => {
                     singleMovie?.original_title ||
                     singleMovie?.name}
                 </p>
-                <div className="genres">
+                <div className="genres flex align-center">
                   {singleMovie?.genres
                     .slice(0, 5)
                     .map((genre: Obj, i: number) => {
                       return (
-                        <span key={i} className="genre__name">
-                          {genre.name}
-                        </span>
+                        <Chip
+                          size="small"
+                          label={genre?.name}
+                          color="primary"
+                          key={nanoid()}
+                          className="genre__name"
+                        />
                       );
                     })}
                 </div>
+                <AddFav movie={singleMovie} />
                 <div className="overview">
                   <span className="overview__text">{singleMovie.overview}</span>
                 </div>
@@ -131,7 +137,6 @@ const Movie: React.FC = () => {
                     </tbody>
                   </table>
                 </div>
-                <AddFav movie={singleMovie} />
               </div>
             </div>
             <div className="container">

@@ -1,7 +1,9 @@
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { SingleMovie } from "../../models/movieModel";
+import { FaHeartBroken, FaHeart } from "react-icons/fa";
 import {
   addToFavorites,
   getFavoriteMovies,
@@ -28,13 +30,25 @@ const AddFav: React.FC<Props> = (movie) => {
   return (
     <div>
       {isFav ? (
-        <button onClick={() => handleFavorite(movie.movie)} className="btn">
+        <Button
+          onClick={() => handleFavorite(movie.movie)}
+          endIcon={<FaHeartBroken />}
+          color="error"
+          variant="contained"
+          className="btn"
+        >
           Remove from Favorites
-        </button>
+        </Button>
       ) : (
-        <button onClick={() => handleFavorite(movie.movie)} className="btn">
+        <Button
+          onClick={() => handleFavorite(movie.movie)}
+          color="primary"
+          endIcon={<FaHeart />}
+          variant="outlined"
+          className="btn"
+        >
           Add to Favorites
-        </button>
+        </Button>
       )}
     </div>
   );

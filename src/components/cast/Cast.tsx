@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import apiConfig from "../../api/config";
 import { Obj } from "../../models/movieModel";
@@ -6,12 +7,13 @@ interface Props {
 }
 
 const CastSlider: React.FC<Props> = ({ cast }) => {
+  const filterByImg = cast.filter((actor: Obj) => actor.profile_path);
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToShow: filterByImg.length > 5 ? 5 : filterByImg.length,
+    slidesToScroll: 2,
     arrows: false,
     responsive: [
       { breakpoint: 350, settings: { slidesToShow: 1 } },
@@ -22,16 +24,22 @@ const CastSlider: React.FC<Props> = ({ cast }) => {
       { breakpoint: 1800, settings: { slidesToShow: 5 } },
     ],
   };
+  console.log(cast);
   return (
     <Slider {...settings}>
       {cast &&
-        cast.map((actor: Obj) => {
+        filterByImg.map((actor: Obj) => {
           return (
             <div key={actor.id} className="cast-wrapper">
-              <div className="cast-image__wrapper flex">
-                <img src={apiConfig.image(actor.profile_path)} alt="" />
-              </div>
-              {actor.name}
+              <a
+                target="_blank"
+                href={`http://google.com/search?q=${actor.name}`}
+              >
+                <div className="cast-image__wrapper flex">
+                  <img src={apiConfig.image(actor.profile_path)} alt="" />
+                </div>
+                {actor.name}
+              </a>
             </div>
           );
         })}

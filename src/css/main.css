@@ -468,30 +468,19 @@ main .container {
 }
 
 .details__container {
-  width: 70%;
+  width: 100%;
   margin: 150px auto 0;
   gap: 20px;
   display: flex;
 }
 .details__container .details__other {
   min-width: 360px;
-  width: 80%;
-  max-width: 700px;
-  flex-grow: 1;
   flex-direction: column;
 }
 .details__container .details__poster img {
   border-radius: 40px;
-  min-width: 200px;
-  width: 100%;
-  max-height: 500px;
+  max-height: 450px;
   object-fit: cover;
-}
-.details__container .btn {
-  cursor: pointer;
-  min-width: 150px;
-  border: none;
-  width: 50%;
 }
 .details__container .movie__title {
   font-family: "Montserrat", sans-serif;
@@ -502,20 +491,9 @@ main .container {
 }
 .details__container .genres {
   flex-wrap: wrap;
-  gap: 5px;
-  display: flex;
-}
-.details__container .genre__name {
-  margin-top: 15px;
-  height: fit-content;
-  display: block;
-  width: fit-content;
-  padding: 5px 20px;
-  color: #ffcb74;
-  font-size: 15px;
-  border-radius: 20px;
-  background: transparent;
-  border: 1px solid #ffcb74;
+  gap: 15px;
+  margin: 25px 0;
+  max-width: 350px;
 }
 .details__container .overview {
   margin: 25px 0;
@@ -550,17 +528,16 @@ main .container {
   }
 }
 .search__input input {
-  font-family: "sf-pro-lighter";
-  border-radius: 40px;
-  border: none;
-  outline: none;
-  padding: 5px 25px;
+  padding: 5px 50px 5px 0px;
+  color: white;
+  border-color: #fff !important;
 }
 .search__input .search__icon {
   height: 100%;
+  z-index: 0;
   cursor: pointer;
-  color: black;
-  left: -25px;
+  color: white;
+  left: -40px;
   position: relative;
 }
 
@@ -573,7 +550,6 @@ main .container {
 }
 .filter__search .filter__button {
   cursor: pointer;
-  width: fit-content;
   background: #000;
   color: #fff;
   border-radius: 5px;
@@ -590,20 +566,23 @@ main .container {
     gap: 25px;
   }
 }
-@media only screen and (max-width: 469px) {
-  .home__filter {
-    font-size: 10px;
+@media only screen and (max-width: 500px) {
+  .filter__button {
+    font-size: 10px !important;
   }
 }
 @media only screen and (max-width: 370px) {
-  .home__filter {
-    font-size: 7px;
+  .filter__button {
+    font-size: 5px;
   }
 }
 .media__cast {
   margin-top: 25px;
 }
 
+.cast-wrapper {
+  text-align: center;
+}
 .cast-wrapper .cast-image__wrapper img {
   min-width: 130px;
   width: 100%;
