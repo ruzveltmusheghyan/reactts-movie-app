@@ -1,7 +1,7 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
-import { useTransition, useState } from "react";
+import { useTransition, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Input, TextField } from "@mui/material";
 const Search: React.FC = () => {
@@ -9,15 +9,12 @@ const Search: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
-
   const handleSearch = () => {
     if (searchValue.trim().length === 0) {
       navigate("/trending");
     } else {
-      startTransition(() => {
-        navigate("/search");
-        dispatch(fetchSearch(searchValue));
-      });
+      navigate("/search");
+      dispatch(fetchSearch(searchValue));
     }
   };
 

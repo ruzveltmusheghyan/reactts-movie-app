@@ -42,18 +42,22 @@ const Movie: React.FC = () => {
         <>
           <div
             className="background_poster"
-            style={{
-              backgroundImage: `url(${apiConfig?.image(
-                singleMovie?.backdrop_path || singleMovie?.poster_path
-              )})`,
-            }}
+            style={
+              singleMovie?.backdrop_path
+                ? {
+                    backgroundImage: `url(${apiConfig?.image(
+                      singleMovie?.backdrop_path || singleMovie?.poster_path
+                    )})`,
+                  }
+                : {}
+            }
           ></div>
           <Header />
           <div className="container">
             <div className="details__container">
               <div className="details__poster">
                 <img
-                  src={apiConfig?.w500Image(singleMovie.poster_path)}
+                  src={apiConfig?.w500Image(singleMovie?.poster_path)}
                   alt=""
                 />
               </div>

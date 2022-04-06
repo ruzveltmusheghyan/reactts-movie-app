@@ -24,7 +24,6 @@ const CastSlider: React.FC<Props> = ({ cast }) => {
       { breakpoint: 1800, settings: { slidesToShow: 5 } },
     ],
   };
-  console.log(cast);
   return (
     <Slider {...settings}>
       {cast &&

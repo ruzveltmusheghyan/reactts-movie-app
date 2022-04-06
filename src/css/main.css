@@ -568,12 +568,12 @@ main .container {
 }
 @media only screen and (max-width: 500px) {
   .filter__button {
-    font-size: 10px !important;
+    font-size: 8px !important;
   }
 }
 @media only screen and (max-width: 370px) {
   .filter__button {
-    font-size: 5px;
+    font-size: 4px;
   }
 }
 .media__cast {
