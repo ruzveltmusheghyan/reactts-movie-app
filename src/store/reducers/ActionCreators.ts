@@ -15,7 +15,9 @@ import { useSelector } from "react-redux";
 export const fetchMovies =
   (pathname: string, page: number) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(fetchingStart());
+      if (page == 1) {
+        dispatch(fetchingStart());
+      }
       const movieDetails = <T>(results: T) => {
         const Movies = {
           results: results,
