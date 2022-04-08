@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { SingleMovie } from "../../models/movieModel";
+import { Movie } from "../../models/movieModel";
 import { FaHeartBroken, FaHeart } from "react-icons/fa";
 import {
   addToFavorites,
@@ -10,7 +10,7 @@ import {
 } from "../../store/reducers/MovieSlice";
 
 interface Props {
-  movie: SingleMovie;
+  movie: Movie;
 }
 
 const AddFav: React.FC<Props> = (movie) => {
@@ -24,7 +24,7 @@ const AddFav: React.FC<Props> = (movie) => {
     );
     isFavorite ? setIsFav(true) : setIsFav(false);
   }, [favoriteMovies]);
-  const handleFavorite = (movie: SingleMovie) => {
+  const handleFavorite = (movie: Movie) => {
     dispatch(addToFavorites(movie));
   };
   return (

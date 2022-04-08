@@ -1,4 +1,5 @@
 import tmdbApi from "../../api/tmdbApi";
+import { movieCategories, Obj } from "../../models/movieModel";
 import { AppDispatch } from "../store";
 import {
   castFetchingSuccess,
@@ -7,30 +8,26 @@ import {
   searchFetchingSuccess,
   singleMovieFetchingSuccess,
   fetchingError,
+  getPageNumber,
 } from "./MovieSlice";
+import { useSelector } from "react-redux";
 
-export const fetchTrendingMovies = () => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(fetchingStart);
-    const { data } = await tmdbApi.getTrendingMovies("day");
-    dispatch(movieFetchingSuccess(data.results));
-  } catch (e) {}
-};
-export const fetchTopRatedMovies = () => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(fetchingStart());
-    const { data } = await tmdbApi.getTopRatedMovies();
-    dispatch(movieFetchingSuccess(data.results));
-  } catch (e) {}
-};
+export const fetchMovies =
+  (pathname: string, page: number) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(fetchingStart());
+      const movieDetails = <T>(results: T) => {
+        const Movies = {
+          results: results,
+          pathname: pathname,
+        };
+        dispatch(movieFetchingSuccess(Movies));
+      };
 
-export const fetchUpcomingMovies = () => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(fetchingStart());
-    const { data } = await tmdbApi.getUpcomingMovies();
-    dispatch(movieFetchingSuccess(data.results));
-  } catch (e) {}
-};
+      const { data } = await tmdbApi.getMovies(page, pathname);
+      movieDetails(data.results);
+    } catch (e) {}
+  };
 
 export const fetchSingleMovie =
   (category: string, movieId: string) => async (dispatch: AppDispatch) => {

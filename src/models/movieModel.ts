@@ -5,16 +5,6 @@ export type Movie = {
   poster_path: string;
   vote_average?: string;
   isFavorite?: boolean;
-};
-
-export type Obj = {
-  [key: string]: string;
-};
-
-export type isLogin = {
-  email?: string;
-};
-export interface SingleMovie extends Movie {
   original_title: string;
   backdrop_path: string;
   name: string;
@@ -27,4 +17,14 @@ export interface SingleMovie extends Movie {
   status: string;
   production_countries: [];
   overview: string;
+};
+
+export type Obj = {
+  [key: string]: string;
+};
+
+export enum movieCategories {
+  TopRated = "/top_rated",
+  Trending = "/trending",
+  Upcoming = "/upcoming",
 }

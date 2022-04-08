@@ -7,17 +7,14 @@ const params = {
 };
 
 const tmdbApi = {
-  getTrendingMovies: (time: string) => {
-    const url = `${apiConfig.baseURL}/trending/movie/${time}`;
-    return axios.get(url, { params: params });
-  },
-  getTopRatedMovies: () => {
-    const url = `${apiConfig.baseURL}/movie/top_rated`;
-    return axios.get(url, { params: params });
-  },
-  getUpcomingMovies: () => {
-    const url = `${apiConfig.baseURL}/movie/upcoming`;
-    return axios.get(url, { params: params });
+  getMovies: (page: number, category: string) => {
+    let url: string = "";
+    if (category === "/trending") {
+      url = `${apiConfig.baseURL}/trending/movie/day?api_key=${apiConfig.apiKey}&language=en-US&page=${page}`;
+    } else {
+      url = `${apiConfig.baseURL}/movie${category}?api_key=${apiConfig.apiKey}&language=en-US&page=${page}`;
+    }
+    return axios.get(url);
   },
   getSingleMovie: (category: string, movieId: string) => {
     const url = `${apiConfig.baseURL}/${category}/${movieId}`;

@@ -1,40 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Card from "../../components/card/Card";
 import Header from "../../components/header/Header";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import { nanoid } from "nanoid";
-import {
-  fetchTopRatedMovies,
-  fetchTrendingMovies,
-  fetchUpcomingMovies,
-} from "../../store/reducers/ActionCreators";
+import { fetchMovies } from "../../store/reducers/ActionCreators";
 import { navigation } from "./navigation";
-import { getMovies, isLoading } from "../../store/reducers/MovieSlice";
+import {
+  getMovies,
+  getPageNumber,
+  isLoading,
+} from "../../store/reducers/MovieSlice";
 import Search from "../../components/search/Search";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { Button } from "@mui/material";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const movies = useSelector(getMovies);
   const loading = useSelector(isLoading);
+  const pageNumber = useSelector(getPageNumber);
+  const page = useRef<number>(1);
+
   useEffect(() => {
-    switch (pathname) {
-      case "/top_rated":
-        dispatch(fetchTopRatedMovies());
-        break;
-      case "/trending":
-        dispatch(fetchTrendingMovies());
-        break;
-      case "/upcoming":
-        dispatch(fetchUpcomingMovies());
-        break;
-      case "/search":
-        break;
-      default:
-        dispatch(fetchTrendingMovies());
-    }
+    dispatch(fetchMovies(pathname, page.current));
   }, [pathname]);
+
+  const loadMore = () => {
+    page.current += 1;
+    dispatch(fetchMovies(pathname, page.current));
+  };
+
   return (
     <>
       <Header />
@@ -66,6 +63,7 @@ const Home: React.FC = () => {
                 <Search />
               </div>
             </div>
+
             {loading ? (
               <div className="loading">
                 <div></div>
@@ -76,6 +74,9 @@ const Home: React.FC = () => {
               <Card fromPath={pathname} movies={movies} />
             )}
           </div>
+          <Button variant="contained" onClick={() => loadMore()}>
+            Load More
+          </Button>
         </div>
       </main>
     </>

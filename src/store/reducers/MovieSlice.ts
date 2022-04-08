@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SingleMovie } from "../../models/movieModel";
+import { movieCategories, Movie } from "../../models/movieModel";
+import { Movies } from "../../models/MoviesMode";
 import { RootState } from "../store";
 interface MovieState {
-  singleMovie: SingleMovie;
-  movies: [];
+  singleMovie: Movie;
+  movies: Movies;
   tv: [];
   cast: [];
   isLoading: boolean;
   error: boolean;
   isLogin: string | boolean;
-  favoriteMovies: SingleMovie[];
+  favoriteMovies: Movie[];
 }
 
 const initialState: MovieState = {
@@ -30,9 +31,14 @@ const initialState: MovieState = {
     production_countries: [],
     overview: "",
   },
-  favoriteMovies: [],
+  favoriteMovies: [] as Movie[],
   cast: [],
-  movies: [],
+  movies: {
+    results: [] as Movie[],
+    page: 1,
+    totalResults: 0,
+    category: "",
+  },
   tv: [],
   isLoading: false,
   error: false,
@@ -55,8 +61,14 @@ export const movieSlice = createSlice({
       state.error = true;
     },
     movieFetchingSuccess(state, { payload }) {
+      if (state.movies.category === payload.pathname) {
+        state.movies.page += 1;
+        state.movies.results = [...state.movies.results, ...payload.results];
+      } else {
+        state.movies.category = payload.pathname;
+        state.movies.results = payload.results;
+      }
       state.isLoading = false;
-      state.movies = payload;
     },
     singleMovieFetchingSuccess(state, { payload }) {
       state.isLoading = false;
@@ -97,7 +109,12 @@ export const {
   addToFavorites,
   searchFetchingSuccess,
 } = movieSlice.actions;
-export const getMovies = (state: RootState) => state.movieReducer.movies;
+export const getPageNumber = (state: RootState) =>
+  state.movieReducer.movies.page;
+export const getMovies = (state: RootState) =>
+  state.movieReducer.movies.results;
+export const getMoviesCategory = (state: RootState) =>
+  state.movieReducer.movies.category;
 export const getCast = (state: RootState) => state.movieReducer.cast;
 export const getFavoriteMovies = (state: RootState) =>
   state.movieReducer.favoriteMovies;
