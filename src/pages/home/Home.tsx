@@ -24,6 +24,7 @@ const Home: React.FC = () => {
   const page = useRef<number>(1);
 
   useEffect(() => {
+    page.current = 1;
     dispatch(fetchMovies(pathname, page.current));
   }, [pathname]);
 
