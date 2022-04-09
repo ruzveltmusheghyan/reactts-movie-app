@@ -1,5 +1,5 @@
 # Simple react movie application built on React,TS.
 
-- Redux/Toolkit used only for educational purposes, there is no need of store in such small project.
+https://user-images.githubusercontent.com/100372876/162581380-4bffa5cd-bc34-49ce-a086-4cfdfc018f32.png
 
-## you can test application here - https://rlty.netlify.app/ (netlify link)
+## application demo - https://demomovie.netlify.app/
