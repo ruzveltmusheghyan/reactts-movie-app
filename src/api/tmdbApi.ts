@@ -9,7 +9,7 @@ const params = {
 const tmdbApi = {
   getMovies: (page: number, category: string) => {
     let url: string = "";
-    if (category === "/trending") {
+    if (category === "/trending" || category === "/") {
       url = `${apiConfig.baseURL}/trending/movie/day?api_key=${apiConfig.apiKey}&language=en-US&page=${page}`;
     } else {
       url = `${apiConfig.baseURL}/movie${category}?api_key=${apiConfig.apiKey}&language=en-US&page=${page}`;
