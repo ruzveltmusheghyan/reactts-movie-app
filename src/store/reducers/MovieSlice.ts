@@ -82,7 +82,7 @@ export const movieSlice = createSlice({
     },
     searchFetchingSuccess(state, { payload }) {
       state.isLoading = false;
-      state.movies = payload;
+      state.movies.results = payload;
     },
     addToFavorites(state, { payload }) {
       const isFav = state.favoriteMovies.find((fav) =>
