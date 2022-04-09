@@ -6,21 +6,15 @@ import { useLocation } from "react-router";
 import { nanoid } from "nanoid";
 import { fetchMovies } from "../../store/reducers/ActionCreators";
 import { navigation } from "./navigation";
-import {
-  getMovies,
-  getPageNumber,
-  isLoading,
-} from "../../store/reducers/MovieSlice";
+import { getMovies, isLoading } from "../../store/reducers/MovieSlice";
 import Search from "../../components/search/Search";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { Button } from "@mui/material";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const movies = useSelector(getMovies);
   const loading = useSelector(isLoading);
-  const pageNumber = useSelector(getPageNumber);
   const page = useRef<number>(1);
 
   useEffect(() => {
@@ -32,7 +26,9 @@ const Home: React.FC = () => {
     page.current += 1;
     dispatch(fetchMovies(pathname, page.current));
   };
-
+  useEffect(() => {
+    if (page.current > 1) window.scrollTo(0, document.body.scrollHeight);
+  }, [movies]);
   return (
     <>
       <Header />

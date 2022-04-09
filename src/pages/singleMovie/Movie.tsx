@@ -5,31 +5,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { Obj } from "../../models/MovieModel";
 import {
   fetchMovieCast,
+  fetchSimilarMovies,
   fetchSingleMovie,
 } from "../../store/reducers/ActionCreators";
 import apiConfig from "../../api/config";
 import CastSlider from "../../components/cast/Cast";
 import AddFav from "../../components/addFav/AddFav";
 import { useNavigate } from "react-router";
-import { getSingleMovie, isError } from "../../store/reducers/MovieSlice";
+import {
+  getSimilarMovies,
+  getSingleMovie,
+  isError,
+} from "../../store/reducers/MovieSlice";
 import { getCast } from "../../store/reducers/castSlice";
 import { nanoid } from "nanoid";
 import { Chip } from "@mui/material";
+import MoviesSlider from "../../components/similarMoviesSlider/MoviesSlider";
 const Movie: React.FC = () => {
   const { category, id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const singleMovie = useSelector(getSingleMovie);
   const cast = useSelector(getCast);
+  const similarMovies = useSelector(getSimilarMovies);
   const errorFetching = useSelector(isError);
   useEffect(() => {
     if (category === "movie" && id) {
       dispatch(fetchSingleMovie(category, id));
       dispatch(fetchMovieCast(id));
+      dispatch(fetchSimilarMovies(id));
+      window.scrollTo(0, 0);
     } else {
       navigate("/");
     }
-  }, []);
+  }, [id]);
   useEffect(() => {
     if (errorFetching) navigate("/");
   }, [errorFetching]);
@@ -141,9 +150,13 @@ const Movie: React.FC = () => {
               </div>
             </div>
             <div className="container">
-              <h1>Cast</h1>
+              <p className="category-text">Cast</p>
               <div className="media__cast ">
                 <CastSlider cast={cast} />
+              </div>
+              <p className="category-text">Similar Movies</p>
+              <div className="similar__movies">
+                <MoviesSlider movies={similarMovies}></MoviesSlider>
               </div>
             </div>
           </div>

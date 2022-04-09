@@ -1,12 +1,17 @@
 import Header from "../../components/header/Header";
 import Card from "../../components/card/Card";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getFavoriteMovies } from "../../store/reducers/MovieSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeCategory,
+  getFavoriteMovies,
+} from "../../store/reducers/MovieSlice";
+import { useLocation } from "react-router";
 
 const Favorites: React.FC = () => {
+  const { pathname } = useLocation();
   const favoriteMovies = useSelector(getFavoriteMovies);
-
+  const dispatch = useDispatch();
+  dispatch(changeCategory(pathname));
   return (
     <>
       <Header />

@@ -7,7 +7,7 @@ import {
   searchFetchingSuccess,
   singleMovieFetchingSuccess,
   fetchingError,
-  getPageNumber,
+  similarMoviesFetchingSuccess,
 } from "./MovieSlice";
 
 export const fetchMovies =
@@ -54,3 +54,11 @@ export const fetchSearch = (query: string) => async (dispatch: AppDispatch) => {
     dispatch(searchFetchingSuccess(data.results));
   } catch (e) {}
 };
+
+export const fetchSimilarMovies =
+  (id: string) => async (dispatch: AppDispatch) => {
+    try {
+      const { data } = await tmdbApi.getSimilarMovies(id);
+      dispatch(similarMoviesFetchingSuccess(data.results));
+    } catch (e) {}
+  };

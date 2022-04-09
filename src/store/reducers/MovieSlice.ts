@@ -5,11 +5,10 @@ import { RootState } from "../store";
 interface MovieState {
   singleMovie: Movie;
   movies: Movies;
-  tv: [];
   isLoading: boolean;
   error: boolean;
-  isLogin: string | boolean;
   favoriteMovies: Movie[];
+  similarMovies: Movie[];
 }
 
 const initialState: MovieState = {
@@ -31,16 +30,15 @@ const initialState: MovieState = {
     overview: "",
   },
   favoriteMovies: [] as Movie[],
+  similarMovies: [] as Movie[],
   movies: {
     results: [] as Movie[],
     page: 1,
     totalResults: 0,
     category: "",
   },
-  tv: [],
   isLoading: false,
   error: false,
-  isLogin: false,
 };
 
 localStorage.getItem("favoriteMovies") &&
@@ -59,6 +57,7 @@ export const movieSlice = createSlice({
       state.error = true;
     },
     movieFetchingSuccess(state, { payload }) {
+      console.log(state.movies.category);
       if (state.movies.category === payload.pathname) {
         state.movies.page += 1;
         state.movies = {
@@ -72,12 +71,20 @@ export const movieSlice = createSlice({
       state.isLoading = false;
     },
     singleMovieFetchingSuccess(state, { payload }) {
+      state.movies.category = "";
       state.isLoading = false;
       state.singleMovie = payload;
     },
     searchFetchingSuccess(state, { payload }) {
+      state.movies.category = "";
       state.isLoading = false;
       state.movies.results = payload;
+    },
+    similarMoviesFetchingSuccess(state, { payload }) {
+      state.similarMovies = payload;
+    },
+    changeCategory(state, { payload }) {
+      state.movies.category = payload;
     },
     addToFavorites(state, { payload }) {
       const isFav = state.favoriteMovies.find((fav) =>
@@ -105,6 +112,8 @@ export const {
   singleMovieFetchingSuccess,
   addToFavorites,
   searchFetchingSuccess,
+  similarMoviesFetchingSuccess,
+  changeCategory,
 } = movieSlice.actions;
 export const getPageNumber = (state: RootState) =>
   state.movieReducer.movies.page;
@@ -116,6 +125,8 @@ export const getFavoriteMovies = (state: RootState) =>
   state.movieReducer.favoriteMovies;
 export const getSingleMovie = (state: RootState) =>
   state.movieReducer.singleMovie;
+export const getSimilarMovies = (state: RootState) =>
+  state.movieReducer.similarMovies;
 export const isLoading = (state: RootState) => state.movieReducer.isLoading;
 export const isError = (state: RootState) => state.movieReducer.error;
 export default movieSlice.reducer;

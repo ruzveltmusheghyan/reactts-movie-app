@@ -28,6 +28,10 @@ const tmdbApi = {
     const url = `${apiConfig.baseURL}/search/movie/`;
     return axios.get(url, { params: { ...params, query: query } });
   },
+  getSimilarMovies: (movieId: string) => {
+    const url = `${apiConfig.baseURL}/movie/${movieId}/similar`;
+    return axios.get(url, { params: params });
+  },
 };
 
 export default tmdbApi;
