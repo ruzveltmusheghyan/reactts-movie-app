@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import Header from "../../components/header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { Obj } from "../../models/movieModel";
+import { Obj } from "../../models/MovieModel";
 import {
   fetchMovieCast,
   fetchSingleMovie,
@@ -11,11 +11,8 @@ import apiConfig from "../../api/config";
 import CastSlider from "../../components/cast/Cast";
 import AddFav from "../../components/addFav/AddFav";
 import { useNavigate } from "react-router";
-import {
-  getCast,
-  getSingleMovie,
-  isError,
-} from "../../store/reducers/MovieSlice";
+import { getSingleMovie, isError } from "../../store/reducers/MovieSlice";
+import { getCast } from "../../store/reducers/castSlice";
 import { nanoid } from "nanoid";
 import { Chip } from "@mui/material";
 const Movie: React.FC = () => {

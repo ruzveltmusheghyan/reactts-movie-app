@@ -1,6 +1,6 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { Movie } from "../../models/movieModel";
+import { Movie } from "../../models/MovieModel";
 interface Props {
   movies: Movie[];
   fromPath?: string;

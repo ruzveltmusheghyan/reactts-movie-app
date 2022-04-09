@@ -1,12 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { movieCategories, Movie } from "../../models/movieModel";
-import { Movies } from "../../models/MoviesMode";
+import { createSlice } from "@reduxjs/toolkit";
+import { Movie } from "../../models/MovieModel";
+import { Movies } from "../../models/MoviesModel";
 import { RootState } from "../store";
 interface MovieState {
   singleMovie: Movie;
   movies: Movies;
   tv: [];
-  cast: [];
   isLoading: boolean;
   error: boolean;
   isLogin: string | boolean;
@@ -32,7 +31,6 @@ const initialState: MovieState = {
     overview: "",
   },
   favoriteMovies: [] as Movie[],
-  cast: [],
   movies: {
     results: [] as Movie[],
     page: 1,
@@ -77,9 +75,6 @@ export const movieSlice = createSlice({
       state.isLoading = false;
       state.singleMovie = payload;
     },
-    castFetchingSuccess(state, { payload }) {
-      state.cast = payload;
-    },
     searchFetchingSuccess(state, { payload }) {
       state.isLoading = false;
       state.movies.results = payload;
@@ -108,7 +103,6 @@ export const {
   fetchingError,
   movieFetchingSuccess,
   singleMovieFetchingSuccess,
-  castFetchingSuccess,
   addToFavorites,
   searchFetchingSuccess,
 } = movieSlice.actions;
@@ -118,7 +112,6 @@ export const getMovies = (state: RootState) =>
   state.movieReducer.movies.results;
 export const getMoviesCategory = (state: RootState) =>
   state.movieReducer.movies.category;
-export const getCast = (state: RootState) => state.movieReducer.cast;
 export const getFavoriteMovies = (state: RootState) =>
   state.movieReducer.favoriteMovies;
 export const getSingleMovie = (state: RootState) =>

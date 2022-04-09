@@ -1,5 +1,4 @@
-import { Movie } from "./movieModel";
-import { movieCategories } from "./movieModel";
+import { movieCategories, Movie } from "./MovieModel";
 export type Movies = {
   results: Movie[];
   page: number;

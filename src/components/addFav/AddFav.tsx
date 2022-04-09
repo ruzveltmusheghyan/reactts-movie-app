@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { Movie } from "../../models/movieModel";
+import { Movie } from "../../models/MovieModel";
 import { FaHeartBroken, FaHeart } from "react-icons/fa";
 import {
   addToFavorites,

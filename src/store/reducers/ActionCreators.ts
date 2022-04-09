@@ -1,8 +1,7 @@
 import tmdbApi from "../../api/tmdbApi";
-import { movieCategories, Obj } from "../../models/movieModel";
+import { castFetchingSuccess } from "./castSlice";
 import { AppDispatch } from "../store";
 import {
-  castFetchingSuccess,
   fetchingStart,
   movieFetchingSuccess,
   searchFetchingSuccess,
@@ -10,7 +9,6 @@ import {
   fetchingError,
   getPageNumber,
 } from "./MovieSlice";
-import { useSelector } from "react-redux";
 
 export const fetchMovies =
   (pathname: string, page: number) => async (dispatch: AppDispatch) => {

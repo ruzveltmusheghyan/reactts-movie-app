@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { nanoid } from "nanoid";
 import Slider from "react-slick";
 import apiConfig from "../../api/config";
-import { Obj } from "../../models/movieModel";
+import { Actor } from "../../models/CastModel";
 interface Props {
-  cast: [];
+  cast: Actor[];
 }
 
 const CastSlider: React.FC<Props> = ({ cast }) => {
-  const filterByImg = cast.filter((actor: Obj) => actor.profile_path);
+  const filterByImg = cast.filter((actor: Actor) => actor.profile_path);
   var settings = {
     dots: false,
     infinite: true,
@@ -27,9 +27,9 @@ const CastSlider: React.FC<Props> = ({ cast }) => {
   return (
     <Slider {...settings}>
       {cast &&
-        filterByImg.map((actor: Obj) => {
+        filterByImg.map((actor: Actor) => {
           return (
-            <div key={actor.id} className="cast-wrapper">
+            <div key={nanoid()} className="cast-wrapper">
               <a
                 target="_blank"
                 href={`http://google.com/search?q=${actor.name}`}
