@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { Movie } from "../../models/MovieModel";
 import { Link } from "react-router-dom";
+import { nanoid } from "nanoid";
 interface Props {
   movies: Movie[];
 }
@@ -27,7 +28,7 @@ const MoviesSlider: React.FC<Props> = ({ movies }) => {
     <Slider {...settings}>
       {movies.map((movie) => {
         return (
-          <div key={1} className="cast-wrapper">
+          <div key={nanoid()} className="cast-wrapper">
             <div className="cast-image__wrapper flex">
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
