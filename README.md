@@ -1,4 +1,4 @@
-# Fully react movie application built on React,TS.
+# Fully responsive react movie application built on React,TS.
 
 ## application demo - https://demomovie.netlify.app/
 
