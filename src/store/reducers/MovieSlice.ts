@@ -57,7 +57,6 @@ export const movieSlice = createSlice({
       state.error = true;
     },
     movieFetchingSuccess(state, { payload }) {
-      console.log(state.movies.category);
       if (state.movies.category === payload.pathname) {
         state.movies.page += 1;
         state.movies = {
