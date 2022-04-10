@@ -1,15 +1,14 @@
 import { useEffect, useRef } from "react";
 import Card from "../../components/card/Card";
 import Header from "../../components/header/Header";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-import { nanoid } from "nanoid";
 import { fetchMovies } from "../../store/reducers/ActionCreators";
-import { navigation } from "./navigation";
+import { Navigation } from "./Navigation";
 import { getMovies, isLoading } from "../../store/reducers/MovieSlice";
 import Search from "../../components/search/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
+import Loading from "../../components/loading/Loading";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -21,11 +20,11 @@ const Home: React.FC = () => {
     page.current = 1;
     dispatch(fetchMovies(pathname, page.current));
   }, [pathname]);
-
   const loadMore = () => {
     page.current += 1;
     dispatch(fetchMovies(pathname, page.current));
   };
+
   useEffect(() => {
     if (page.current > 1) window.scrollTo(0, document.body.scrollHeight);
   }, [movies]);
@@ -37,24 +36,7 @@ const Home: React.FC = () => {
           <div>
             <div className="filter__search flex justify-between">
               <div className="home__filter flex">
-                {navigation.map((el, i) => {
-                  return (
-                    <Link key={nanoid()} to={el.pathname}>
-                      <span
-                        className={`filter__button flex align-center justify-center ${
-                          pathname === el.pathname
-                            ? "active"
-                            : "" ||
-                              (pathname === "/" && el.pathname === "/trending"
-                                ? "active"
-                                : "")
-                        }`}
-                      >
-                        {<el.icon size={20} />} {el.display}
-                      </span>
-                    </Link>
-                  );
-                })}
+                <Navigation pathname={pathname} />
               </div>
               <div>
                 <Search />
@@ -62,11 +44,7 @@ const Home: React.FC = () => {
             </div>
 
             {loading ? (
-              <div className="loading">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+              <Loading />
             ) : (
               <Card fromPath={pathname} movies={movies} />
             )}

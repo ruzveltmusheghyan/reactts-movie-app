@@ -34,19 +34,20 @@ export const fetchSingleMovie =
     try {
       dispatch(fetchingStart());
       const { data } = await tmdbApi.getSingleMovie(category, movieId);
+      dispatch(fetchMovieCast(movieId));
+      dispatch(fetchSimilarMovies(movieId));
       dispatch(singleMovieFetchingSuccess(data));
     } catch (e) {
       dispatch(fetchingError());
     }
   };
 
-export const fetchMovieCast =
-  (movieId: string) => async (dispatch: AppDispatch) => {
-    try {
-      const { data } = await tmdbApi.getMovieCast(movieId);
-      dispatch(castFetchingSuccess(data.cast));
-    } catch (e) {}
-  };
+const fetchMovieCast = (movieId: string) => async (dispatch: AppDispatch) => {
+  try {
+    const { data } = await tmdbApi.getMovieCast(movieId);
+    dispatch(castFetchingSuccess(data.cast));
+  } catch (e) {}
+};
 export const fetchSearch = (query: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(fetchingStart());
@@ -55,10 +56,9 @@ export const fetchSearch = (query: string) => async (dispatch: AppDispatch) => {
   } catch (e) {}
 };
 
-export const fetchSimilarMovies =
-  (id: string) => async (dispatch: AppDispatch) => {
-    try {
-      const { data } = await tmdbApi.getSimilarMovies(id);
-      dispatch(similarMoviesFetchingSuccess(data.results));
-    } catch (e) {}
-  };
+const fetchSimilarMovies = (id: string) => async (dispatch: AppDispatch) => {
+  try {
+    const { data } = await tmdbApi.getSimilarMovies(id);
+    dispatch(similarMoviesFetchingSuccess(data.results));
+  } catch (e) {}
+};

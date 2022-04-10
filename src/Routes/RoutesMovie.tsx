@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { list } from "./list";
 import { nanoid } from "nanoid";
+import Header from "../components/header/Header";
 const RoutesMovie: React.FC = () => {
   return (
     <BrowserRouter>

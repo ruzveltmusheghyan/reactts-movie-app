@@ -106,7 +106,8 @@ a {
     top: 8px;
     height: 64px;
   }
-  50%, 100% {
+  50%,
+  100% {
     top: 24px;
     height: 32px;
   }
@@ -627,5 +628,3 @@ body.active {
     min-width: 0 !important;
   }
 }
-
-/*# sourceMappingURL=main.css.map */

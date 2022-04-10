@@ -19,10 +19,15 @@ export type Movie = {
   overview: string;
 };
 
-export type Obj = {
-  [key: string]: string;
+export type Genre = {
+  name: string;
 };
-
+export type Language = {
+  english_name: string;
+};
+export type Country = {
+  name: string;
+};
 export enum movieCategories {
   TopRated = "/top_rated",
   Trending = "/trending",
