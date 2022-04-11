@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 
 import movieReducer from "./reducers/MovieSlice";
-import castReducer from "./reducers/castSlice";
+import castReducer from "./reducers/СastSlice";
 const rootReducer = combineReducers({
   movieReducer,
   castReducer,

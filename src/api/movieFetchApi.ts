@@ -1,12 +1,8 @@
 import axios from "axios";
 import apiConfig from "./config";
+import { params } from "./config";
 
-const params = {
-  api_key: apiConfig.apiKey,
-  query: "",
-};
-
-const tmdbApi = {
+export const movieFetchApi = {
   getMovies: (page: number, category: string) => {
     let url: string = "";
     if (category === "/trending" || category === "/") {
@@ -20,18 +16,8 @@ const tmdbApi = {
     const url = `${apiConfig.baseURL}/${category}/${movieId}`;
     return axios.get(url, { params: params });
   },
-  getMovieCast: (movieId: string) => {
-    const url = `${apiConfig.baseURL}/movie/${movieId}/credits`;
-    return axios.get(url, { params: params });
-  },
-  getSearchResults: (query: string) => {
-    const url = `${apiConfig.baseURL}/search/movie/`;
-    return axios.get(url, { params: { ...params, query: query } });
-  },
   getSimilarMovies: (movieId: string) => {
     const url = `${apiConfig.baseURL}/movie/${movieId}/similar`;
     return axios.get(url, { params: params });
   },
 };
-
-export default tmdbApi;

@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getCast } from "../../store/reducers/castSlice";
+import { getCast } from "../../store/reducers/СastSlice";
 import { getSimilarMovies } from "../../store/reducers/MovieSlice";
 import apiConfig from "../../api/config";
 import { Movie } from "../../models/MovieModel";
-import CastSlider from "../cast/Cast";
+import CastSlider from "../SingleMovieCastSlider/CastSlider";
 import AddFav from "../addFav/AddFav";
 import MoviesSlider from "../similarMoviesSlider/MoviesSlider";
 import SingleMovieGenres from "../singleMovieGenres/SingleMovieGenres";

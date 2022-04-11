@@ -28,8 +28,3 @@ export type Language = {
 export type Country = {
   name: string;
 };
-export enum movieCategories {
-  TopRated = "/top_rated",
-  Trending = "/trending",
-  Upcoming = "/upcoming",
-}

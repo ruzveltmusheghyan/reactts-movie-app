@@ -5,4 +5,8 @@ const apiConfig = {
   image: (imgURL: string) => `https://image.tmdb.org/t/p/original/${imgURL}`,
 };
 
+export const params = {
+  api_key: apiConfig.apiKey,
+};
+
 export default apiConfig;
