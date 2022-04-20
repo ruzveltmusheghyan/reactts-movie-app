@@ -20,21 +20,23 @@ const Header: React.FC = ({}) => {
           </Link>
         </div>
         <div className="menu">
-          <ul className="menu__list flex">
-            {navigation.map((e, i) => (
-              <li
-                key={i}
-                className={
-                  i === active ? "menu-list__item active" : "menu-list__item"
-                }
-              >
-                <Link to={e.path}>{e.display}</Link>
-                {e.path === "/favorite" && favoriteMovies.length > 0 && (
-                  <span className="watch-count">{favoriteMovies.length}</span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <nav>
+            <ul className="menu__list flex">
+              {navigation.map((e, i) => (
+                <li
+                  key={i}
+                  className={
+                    i === active ? "menu-list__item active" : "menu-list__item"
+                  }
+                >
+                  <Link to={e.path}>{e.display}</Link>
+                  {e.path === "/favorite" && favoriteMovies.length > 0 && (
+                    <span className="watch-count">{favoriteMovies.length}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
           <Hamburger />
         </div>
       </div>

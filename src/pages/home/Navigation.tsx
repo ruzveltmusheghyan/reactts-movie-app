@@ -38,20 +38,22 @@ export const Navigation: React.FC<Props> = ({ pathname }) => {
     <>
       {list.map((el) => {
         return (
-          <Link key={nanoid()} to={el.pathname}>
-            <span
-              className={`filter__button flex align-center justify-center ${
-                pathname === el.pathname
-                  ? "active"
-                  : "" ||
-                    (pathname === "/" && el.pathname === "/trending"
-                      ? "active"
-                      : "")
-              }`}
-            >
-              {<el.icon size={20} />} {el.display}
-            </span>
-          </Link>
+          <nav>
+            <Link key={nanoid()} to={el.pathname}>
+              <span
+                className={`filter__button flex align-center justify-center ${
+                  pathname === el.pathname
+                    ? "active"
+                    : "" ||
+                      (pathname === "/" && el.pathname === "/trending"
+                        ? "active"
+                        : "")
+                }`}
+              >
+                {<el.icon size={20} />} {el.display}
+              </span>
+            </Link>
+          </nav>
         );
       })}
     </>

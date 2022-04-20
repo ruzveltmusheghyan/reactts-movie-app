@@ -1,11 +1,10 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { fetchSearch } from "../../store/reducers/ActionCreators";
 import { useNavigate } from "react-router";
-import { useTransition, useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Input, TextField } from "@mui/material";
+import { Input } from "@mui/material";
 const Search: React.FC = () => {
-  const [isPending, startTransition] = useTransition();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
@@ -23,6 +22,7 @@ const Search: React.FC = () => {
       <Input
         onChange={(e) => setSearchValue(e.target.value)}
         size="small"
+        type="search"
         placeholder="search..."
       />
       <AiOutlineSearch

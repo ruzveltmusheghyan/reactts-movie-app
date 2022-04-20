@@ -12,23 +12,7 @@ interface MovieState {
 }
 
 const initialState: MovieState = {
-  singleMovie: {
-    id: 0,
-    title: "",
-    original_title: "",
-    backdrop_path: "",
-    poster_path: "",
-    name: "",
-    genres: [],
-    release_date: "",
-    first_air_date: "",
-    spoken_languages: [],
-    runtime: 0,
-    episode_run_time: "",
-    status: "",
-    production_countries: [],
-    overview: "",
-  },
+  singleMovie: {} as Movie,
   favoriteMovies: [] as Movie[],
   similarMovies: [] as Movie[],
   movies: {
